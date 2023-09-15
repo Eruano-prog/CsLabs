@@ -7,7 +7,6 @@
     <ItemGroup>
       <Folder Include="Barrier\" />
       <Folder Include="Deflector\" />
-      <Folder Include="Engine\" />
       <Folder Include="Environment\" />
       <Folder Include="Starship\" />
     </ItemGroup>
