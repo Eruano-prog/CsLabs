@@ -1,4 +1,6 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Engine.Entities;
+﻿using System;
+
+namespace Itmo.ObjectOrientedProgramming.Lab1.Engine.Entities;
 
 public class EngineE : IEngine
 {
@@ -11,6 +13,8 @@ public class EngineE : IEngine
 
     public int TimeToReach(int dist)
     {
-        
+        double acceleration = Math.Log(dist);
+        int time = (int)Math.Sqrt((2 * dist) / acceleration);
+        return time;
     }
 }
