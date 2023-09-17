@@ -3,12 +3,8 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public class CommonTrack : AbsTrack
+public abstract class AbsTrack
 {
     public int Dist { get; init; }
-
-    public override PassTrackResult Pass(AbsShip ship)
-    {
-        if ()
-    }
+    public abstract PassTrackResult Pass(AbsShip ship);
 }

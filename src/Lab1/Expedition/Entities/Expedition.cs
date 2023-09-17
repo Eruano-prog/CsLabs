@@ -6,11 +6,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
 public class Expedition
 {
-    private List<ITrack> track_list;
+    private List<AbsTrack> track_list;
 
     PassTrackResult Complete()
     {
-        foreach (ITrack track in track_list)
+        foreach (AbsTrack track in track_list)
         {
             
         }

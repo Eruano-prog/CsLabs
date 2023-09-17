@@ -3,5 +3,6 @@
 public abstract class AbsEngine
 {
     public int Consumprion { get; }
-    public abstract int FuelToPass(int dist);
+    public bool AntiNitro { get; }
+    public abstract int TimeToPass(int dist);
 }

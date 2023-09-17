@@ -11,10 +11,10 @@ public class EngineE : AbsEngine
 
     public int Consumption { get; init; }
 
-    public override int FuelToPass(int dist)
+    public override int TimeToPass(int dist)
     {
         double acceleration = Math.Log(dist);
         int time = (int)Math.Sqrt((2 * dist) / acceleration);
-        return time * Consumption;
+        return time;
     }
 }
