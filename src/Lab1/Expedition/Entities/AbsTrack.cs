@@ -1,9 +1,10 @@
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Abstract;
 
-public interface ITrack
+public abstract class AbsTrack
 {
     public int Dist { get; init; }
-    PassTrackResult Pass(sh);
+    PassTrackResult virtual Pass(AbsShip ship);
 }
