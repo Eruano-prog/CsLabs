@@ -4,11 +4,5 @@
         <RootNamespace>Itmo.ObjectOrientedProgramming.Lab1</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Barrier\" />
-      <Folder Include="Deflector\" />
-      <Folder Include="Environment\" />
-      <Folder Include="Starship\" />
-    </ItemGroup>
 
 </Project>
