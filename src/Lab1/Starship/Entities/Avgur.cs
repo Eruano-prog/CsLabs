@@ -4,12 +4,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 public class Avgur : AbsShip
 {
-    private AbsEngine impulseEngine;
-    private AbsWarpEngine? warpEngine;
+    private AbsEngine _impulseEngine;
+    private AbsWarpEngine? _warpEngine;
 
     public Avgur()
     {
-        impulseEngine = new EngineE();
-        warpEngine = new AlphaWarpEngine();
+        _impulseEngine = new EngineE();
+        _warpEngine = new AlphaWarpEngine();
     }
 }

@@ -10,5 +10,6 @@ public class Shuttle : AbsShip
     public Shuttle()
     {
         _impulseEngine = new EngineC(false);
+        _warpEngine = null;
     }
 }
