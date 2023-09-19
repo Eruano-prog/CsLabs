@@ -2,7 +2,7 @@
 
 public sealed record Success() : PassTrackResult
 {
-    public Success(int )
-    public int TimeToPass { get; init; }
-    public int FuelToPass { get; init; }
+    public Success(int TimeToPass, int FuelToPass);
+    public required int TimeToPass { get; init; }
+    public required int FuelToPass { get; init; }
 }

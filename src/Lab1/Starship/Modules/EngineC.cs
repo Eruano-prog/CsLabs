@@ -4,18 +4,16 @@ public sealed class EngineC : AbsEngine
 {
     private readonly int _speed;
 
-    public EngineC(bool antiNitro)
+    public EngineC()
     {
         _speed = 200;
         Consumption = 10;
-        AntiNitro = antiNitro;
     }
 
     public int Consumption { get; init; }
-    public bool AntiNitro { get; init; }
 
-    public override int FuelToPass(int dist)
+    public override int TimeToPass(int dist)
     {
-        return (dist / _speed) * Consumption;
+        return dist / _speed;
     }
 }

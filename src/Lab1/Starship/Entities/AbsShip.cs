@@ -10,7 +10,7 @@ public abstract class AbsShip
 
     public virtual PassTrackResult Fly(int dist)
     {
-        int result = impulseEngine.FuelToPass(dist);
-        return new Success();
+        int result = impulseEngine.TimeToPass(dist);
+        return new Success(result, result * impulseEngine.Consumprion);
     }
 }
