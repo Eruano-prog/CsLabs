@@ -11,7 +11,7 @@ public class OmegaWarpEngine : AbsWarpEngine
         _maxDist = 10000;
     }
 
-    public override int? Consumption(int dist)
+    public override int? TimeToWarp(int dist)
     {
         if (dist > _maxDist)
         {

@@ -2,7 +2,10 @@
 
 public sealed record Success() : PassTrackResult
 {
-    public Success(int TimeToPass, int FuelToPass);
-    public required int TimeToPass { get; init; }
-    public required int FuelToPass { get; init; }
+    public Success(int time, int fuel)
+        : this()
+    {
+        TimeToPass = time;
+        FuelToPass = fuel;
+    }
 }

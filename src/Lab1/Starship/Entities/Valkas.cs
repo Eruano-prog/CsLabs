@@ -4,12 +4,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 public class Valkas : AbsShip
 {
-    private AbsEngine impulseEngine;
-    private AbsWarpEngine? warpEngine;
+    private AbsEngine _impulseEngine;
+    private AbsWarpEngine? _warpEngine;
 
     public Valkas()
     {
-        impulseEngine = new EngineE();
-        warpEngine = new GammaWarpEngine();
+        _impulseEngine = new EngineE();
+        _warpEngine = new GammaWarpEngine();
     }
 }

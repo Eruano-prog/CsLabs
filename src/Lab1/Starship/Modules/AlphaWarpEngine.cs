@@ -3,13 +3,12 @@
 public class AlphaWarpEngine : AbsWarpEngine
 {
     private readonly int _maxDist;
-
     public AlphaWarpEngine()
     {
         _maxDist = 5000;
     }
 
-    public override int? Consumption(int dist)
+    public override int? TimeToWarp(int dist)
     {
         if (dist > _maxDist)
         {

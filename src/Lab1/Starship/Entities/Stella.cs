@@ -9,7 +9,7 @@ public class Stella : AbsShip
 
     public Stella()
     {
-        _impulseEngine = new EngineC(true);
+        _impulseEngine = new EngineC();
         _warpEngine = new OmegaWarpEngine();
     }
 }
