@@ -1,18 +1,19 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public class CommonTrack : AbsTrack
+public class HighDensityTrack : AbsTrack
 {
-    private readonly int _dist;
+    private int _dist;
 
-    public CommonTrack(int dist) => _dist = dist;
+    public HighDensityTrack(int dist) => _dist = dist;
+
     public override PassTrackResult Pass(AbsShip ship)
     {
         Debug.Assert(ship != null, nameof(ship) + " != null");
-        PassTrackResult res = ship.Fly(_dist);
+        PassTrackResult res = ship.Warp(_dist);
         return res;
     }
 }
