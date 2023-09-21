@@ -11,12 +11,16 @@ public abstract class AbsShip
          ImpulseEngine = new EngineC();
          WarpEngine = null;
          Deflector = null;
+         AntiNitro = false;
      }
 
-    protected AbsHull Hull { get; set; }
-    protected AbsDeflector? Deflector { get; set; }
-    protected AbsEngine ImpulseEngine { get; set; }
-    protected AbsWarpEngine? WarpEngine { get; set; }
+    public bool AntiNitro { get; protected set; }
+    protected AbsHull Hull { get; init; }
+
+    protected AbsDeflector? Deflector { get; init; }
+
+    protected AbsEngine ImpulseEngine { get; init; }
+    protected AbsWarpEngine? WarpEngine { get; init; }
 
     public virtual PassTrackResult Fly(int dist)
     {
@@ -38,5 +42,12 @@ public abstract class AbsShip
         else Hull.TakeDamage(dmg);
 
         return Hull.IsWorking;
+    }
+
+    public bool RejectFlare()
+    {
+        if (Deflector == null) return false;
+
+        return Deflector.Flare();
     }
 }

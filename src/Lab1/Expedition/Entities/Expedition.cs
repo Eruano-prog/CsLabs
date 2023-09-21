@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
 public class Expedition
 {
-    private List<AbsTrack> _trackList = new List<AbsTrack>
+    private readonly List<AbsTrack> _trackList = new List<AbsTrack>
     {
         Capacity = 0,
     };

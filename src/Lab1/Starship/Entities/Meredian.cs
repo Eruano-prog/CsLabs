@@ -9,5 +9,6 @@ public class Meredian : AbsShip
         ImpulseEngine = new EngineE();
         Hull = new SecondHull();
         Deflector = new SecondDeflector(false);
+        AntiNitro = true;
     }
 }
