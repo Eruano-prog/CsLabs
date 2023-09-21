@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
@@ -7,26 +5,23 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
 public class Expedition
 {
-    private readonly List<AbsTrack> _trackList = new List<AbsTrack>
-    {
-        Capacity = 0,
-    };
+    private readonly AbsTrack _track;
+    private readonly AbsShip _ship;
 
-    public void AddTrack(AbsTrack track)
+    public Expedition(AbsTrack track, AbsShip ship)
     {
-        _trackList.Add(track);
+        _track = track;
+        _ship = ship;
     }
 
-    public PassTrackResult Complete(AbsShip ship)
+    public PassTrackResult Complete()
     {
         int commonFuel = 0;
         int time = 0;
-        foreach (PassTrackResult res in _trackList.Select(track => track.Pass(ship)))
-        {
-            if (res is not Success) return res;
-            commonFuel += res.FuelToPass;
-            time += res.TimeToPass;
-        }
+        PassTrackResult res = _track.Pass(_ship);
+        if (res is not Success) return res;
+        commonFuel += res.FuelToPass;
+        time += res.TimeToPass;
 
         return new Success { FuelToPass = commonFuel, TimeToPass = time };
     }
