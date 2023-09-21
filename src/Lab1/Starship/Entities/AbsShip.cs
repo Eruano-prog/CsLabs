@@ -61,4 +61,9 @@ public abstract class AbsShip
 
         return Deflector.Flare();
     }
+
+    public bool IsOk()
+    {
+        return Hull.IsWorking;
+    }
 }
