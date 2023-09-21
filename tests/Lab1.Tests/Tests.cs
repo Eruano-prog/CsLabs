@@ -24,14 +24,28 @@ public static class Tests
     {
         var ships = new List<AbsShip>() { new Valkas(), new Valkas(true) };
         var results = new List<PassTrackResult>();
-        foreach (AbsShip ship in ships)
+        foreach (Expedition.Entities.Expedition exp in ships.Select(ship => new Expedition.Entities.Expedition(new HighDensityTrack(10000), ship)))
         {
-            var exp = new Expedition.Entities.Expedition(new HighDensityTrack(10000), ship);
             exp.AddObstacle(new AntimaterFlare());
             results.Add(exp.Complete());
         }
 
         bool assert = (results[0] is CrewDied) & (results[1] is Success);
+        Assert.True(assert);
+    }
+
+    [Fact]
+    public static void Test3()
+    {
+        var ships = new List<AbsShip>() { new Valkas(), new Avgur(), new Meredian() };
+        var results = new List<PassTrackResult>();
+        foreach (Expedition.Entities.Expedition? exp in ships.Select(ship => new Expedition.Entities.Expedition(new NitrinTrack(10000), ship)))
+        {
+            exp.AddObstacle(new Whale());
+            results.Add(exp.Complete());
+        }
+
+        bool assert = (results[0] is ShipDestroyed) & (results[1] is Success) & (results[2] is Success);
         Assert.True(assert);
     }
 
