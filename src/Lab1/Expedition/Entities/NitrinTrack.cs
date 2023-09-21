@@ -44,6 +44,11 @@ public class NitrinTrack : AbsTrack
             return pass;
         }
 
+        if (!ship.FlyThroughNitro())
+        {
+            return new ShipLost() { Message = $"{nameof(ship)} lost because it can`t pass through Nitrin track" };
+        }
+
         PassTrackResult res = ship.Fly(_dist);
         return res;
     }

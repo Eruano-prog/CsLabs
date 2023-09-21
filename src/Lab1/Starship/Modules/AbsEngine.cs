@@ -3,6 +3,6 @@
 public abstract class AbsEngine
 {
     public int Consumption { get; protected init; }
-    public bool AntiNitro { get; }
+    public bool CanPassNitro { get; init; }
     public abstract int TimeToPass(int dist);
 }

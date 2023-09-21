@@ -66,4 +66,9 @@ public abstract class AbsShip
     {
         return Hull.IsWorking;
     }
+
+    public bool FlyThroughNitro()
+    {
+        return ImpulseEngine.CanPassNitro;
+    }
 }

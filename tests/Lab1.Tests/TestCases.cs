@@ -76,4 +76,14 @@ public static class TestCases
         bool assert = (results[0] is ShipLost) & (results[1] is Success);
         Assert.True(assert);
     }
+
+    [Fact]
+    public static void Test6()
+    {
+        var ships = new List<AbsShip>() { new Shuttle(), new Valkas() };
+        var results = ships.Select(ship => new Expedition.Entities.Expedition(new NitrinTrack(7500), ship)).Select(exp => exp.Complete()).ToList();
+
+        bool assert = (results[0] is ShipLost) & (results[1] is Success);
+        Assert.True(assert);
+    }
 }
