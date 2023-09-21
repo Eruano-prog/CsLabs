@@ -2,7 +2,13 @@
 
 public abstract class AbsHull
 {
-    public bool IsWorking { get; protected set; }
+    public bool IsWorking { get; private set; } = true;
+    protected int Durability { get; set; }
 
-    public abstract bool TakeDamage(int dmg);
+    public virtual bool TakeDamage(int dmg)
+    {
+        Durability -= dmg;
+        if (Durability <= 0) IsWorking = false;
+        return Durability >= 0;
+    }
 }
