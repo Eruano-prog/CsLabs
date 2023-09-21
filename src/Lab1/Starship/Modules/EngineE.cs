@@ -7,9 +7,8 @@ public class EngineE : AbsEngine
     public EngineE()
     {
         Consumption = 400;
+        CanPassNitro = true;
     }
-
-    public int Consumption { get; init; }
 
     public override int TimeToPass(int dist)
     {
