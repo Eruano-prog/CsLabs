@@ -10,8 +10,6 @@ public sealed class EngineC : AbsEngine
         Consumption = 10;
     }
 
-    public int Consumption { get; init; }
-
     public override int TimeToPass(int dist)
     {
         return dist / _speed;

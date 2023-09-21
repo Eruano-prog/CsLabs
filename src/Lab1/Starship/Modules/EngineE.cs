@@ -9,8 +9,6 @@ public class EngineE : AbsEngine
         Consumption = 400;
     }
 
-    public int Consumption { get; init; }
-
     public override int TimeToPass(int dist)
     {
         double acceleration = Math.Log(dist);

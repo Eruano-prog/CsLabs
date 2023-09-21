@@ -25,7 +25,7 @@ public abstract class AbsShip
     public virtual PassTrackResult Fly(int dist)
     {
         int result = ImpulseEngine.TimeToPass(dist);
-        return new Success(result, result * ImpulseEngine.Consumprion);
+        return new Success(result, result * ImpulseEngine.Consumption);
     }
 
     public virtual PassTrackResult Warp(int dist)

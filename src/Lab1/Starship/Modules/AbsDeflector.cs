@@ -26,8 +26,12 @@ public abstract class AbsDeflector
 
     public bool Flare()
     {
-        if (PhotonCount <= 0) return false;
-        PhotonCount -= 1;
+        if (PhotonCount > 0)
+        {
+            PhotonCount -= 1;
+            return false;
+        }
+
         return true;
     }
 }

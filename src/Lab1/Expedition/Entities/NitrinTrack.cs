@@ -17,7 +17,7 @@ public class NitrinTrack : AbsTrack
         _obstacles = new List<AbsObstacle>();
     }
 
-    public void AddObstacle(AbsObstacle obj)
+    public override void AddObstacle(AbsObstacle obj)
     {
         if (obj is Whale)
         {

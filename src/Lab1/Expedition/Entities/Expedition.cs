@@ -14,15 +14,20 @@ public class Expedition
         _ship = ship;
     }
 
+    public void AddObstacle(AbsObstacle obj)
+    {
+        _track?.AddObstacle(obj);
+    }
+
     public PassTrackResult Complete()
     {
-        int commonFuel = 0;
+        int fuel = 0;
         int time = 0;
         PassTrackResult res = _track.Pass(_ship);
         if (res is not Success) return res;
-        commonFuel += res.FuelToPass;
+        fuel += res.FuelToPass;
         time += res.TimeToPass;
 
-        return new Success { FuelToPass = commonFuel, TimeToPass = time };
+        return new Success { FuelToPass = fuel, TimeToPass = time };
     }
 }
