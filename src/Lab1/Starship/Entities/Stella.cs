@@ -4,12 +4,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 public class Stella : AbsShip
 {
-    private AbsEngine _impulseEngine;
-    private AbsWarpEngine? _warpEngine;
-
     public Stella()
     {
-        _impulseEngine = new EngineC();
-        _warpEngine = new OmegaWarpEngine();
+        ImpulseEngine = new EngineC();
+        WarpEngine = new OmegaWarpEngine();
+        Hull = new FirstHull();
+        Deflector = new FirstDeflector(false);
     }
 }

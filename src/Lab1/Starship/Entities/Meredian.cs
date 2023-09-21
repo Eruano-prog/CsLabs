@@ -4,10 +4,10 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 public class Meredian : AbsShip
 {
-    private AbsEngine _impulseEngine;
-
     public Meredian()
     {
-        _impulseEngine = new EngineE();
+        ImpulseEngine = new EngineE();
+        Hull = new SecondHull();
+        Deflector = new SecondDeflector(false);
     }
 }
