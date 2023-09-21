@@ -8,9 +8,8 @@ public sealed class EngineC : AbsEngine
     {
         _speed = 200;
         Consumption = 10;
+        CanPassNitro = false;
     }
-
-    public int Consumption { get; init; }
 
     public override int TimeToPass(int dist)
     {

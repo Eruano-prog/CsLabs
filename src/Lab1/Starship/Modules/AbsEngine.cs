@@ -2,7 +2,7 @@
 
 public abstract class AbsEngine
 {
-    public int Consumprion { get; }
-    public bool AntiNitro { get; }
+    public int Consumption { get; protected init; }
+    public bool CanPassNitro { get; init; }
     public abstract int TimeToPass(int dist);
 }
