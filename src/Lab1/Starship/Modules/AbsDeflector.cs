@@ -14,8 +14,8 @@ public abstract class AbsDeflector
     }
 
     public bool IsWorking { get; private set; } = true;
-    public int PhotonCount { get; set; }
-    protected int Durability { get; set; }
+    public int PhotonCount { get; protected set; }
+    public int Durability { get; protected set; }
 
     public virtual bool TakeDamage(int dmg)
     {

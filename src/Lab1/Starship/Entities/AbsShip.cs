@@ -38,8 +38,19 @@ public abstract class AbsShip
 
     public bool Hit(int dmg)
     {
-        if (Deflector != null && Deflector.IsWorking) Deflector.TakeDamage(dmg);
-        else Hull.TakeDamage(dmg);
+        if (Deflector is { IsWorking: true })
+        {
+            Deflector.TakeDamage(dmg);
+            if (!Deflector.IsWorking)
+            {
+                dmg = int.Abs(Deflector.Durability);
+            }
+        }
+
+        if (Deflector is { IsWorking: false })
+        {
+            Hull.TakeDamage(dmg);
+        }
 
         return Hull.IsWorking;
     }
