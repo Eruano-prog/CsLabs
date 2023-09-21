@@ -66,4 +66,14 @@ public static class TestCases
 
         Assert.Equal(0, minIndex);
     }
+
+    [Fact]
+    public static void Test5()
+    {
+        var ships = new List<AbsShip>() { new Avgur(), new Stella() };
+        var results = ships.Select(ship => new Expedition.Entities.Expedition(new HighDensityTrack(7500), ship)).Select(exp => exp.Complete()).ToList();
+
+        bool assert = (results[0] is ShipLost) & (results[1] is Success);
+        Assert.True(assert);
+    }
 }
