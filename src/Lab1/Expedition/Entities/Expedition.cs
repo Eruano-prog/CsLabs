@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
@@ -19,6 +20,16 @@ public class Expedition
         : this(ship)
     {
         _track = new List<AbsTrack>() { track };
+    }
+
+    public Expedition(Collection<AbsTrack> tracks, AbsShip ship)
+        : this(ship)
+    {
+        if (tracks == null) return;
+        foreach (AbsTrack track in tracks)
+        {
+            _track.Add(track);
+        }
     }
 
     public void AddTrack(AbsTrack track)

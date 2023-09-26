@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
@@ -78,6 +79,17 @@ public static class TestCases
         var results = ships.Select(ship => new Expedition.Entities.Expedition(new NitrinTrack(7500), ship)).Select(exp => exp.Complete()).ToList();
 
         bool assert = (results[0] is ShipLost) & (results[1] is Success);
+        Assert.True(assert);
+    }
+
+    [Fact]
+    public static void Test7()
+    {
+        var ships = new List<AbsShip>() { new Shuttle(), new Meredian(), new Avgur() };
+        var tracks = new Collection<AbsTrack>() { new HighDensityTrack(4000), new CommonTrack(500) };
+        var results = ships.Select(ship => new Expedition.Entities.Expedition(tracks, ship)).Select(exp => exp.Complete()).ToList();
+
+        bool assert = (results[0] is ShipLost) & (results[1] is ShipLost) & (results[2] is Success);
         Assert.True(assert);
     }
 }
