@@ -1,4 +1,4 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 public abstract class BaseDeflector
 {
@@ -17,9 +17,9 @@ public abstract class BaseDeflector
     public int PhotonCount { get; protected set; }
     public int Durability { get; protected set; }
 
-    public virtual bool TakeDamage(int dmg)
+    public virtual bool TakeDamage(int damage)
     {
-        Durability -= dmg;
+        Durability -= damage;
         if (Durability <= 0) IsWorking = false;
         return Durability >= 0;
     }

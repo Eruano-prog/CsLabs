@@ -2,14 +2,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 public abstract class BaseWarpEngine
 {
-    private readonly int _maxDist;
+    private readonly int _maxDistance;
 
     protected BaseWarpEngine() { }
-    protected BaseWarpEngine(int max) => _maxDist = max;
+    protected BaseWarpEngine(int max) => _maxDistance = max;
 
-    public virtual int? TimeToWarp(int dist)
+    public virtual int? TimeToWarp(int distance)
     {
-        if (dist > _maxDist) return null;
-        return dist;
+        if (distance > _maxDistance) return null;
+        return distance;
     }
 }

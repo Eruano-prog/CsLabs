@@ -2,19 +2,19 @@
 
 public class AlphaWarpEngine : BaseWarpEngine
 {
-    private readonly int _maxDist;
+    private readonly int _maxDistance;
     public AlphaWarpEngine()
     {
-        _maxDist = 5000;
+        _maxDistance = 5000;
     }
 
-    public override int? TimeToWarp(int dist)
+    public override int? TimeToWarp(int distance)
     {
-        if (dist > _maxDist)
+        if (distance > _maxDistance)
         {
             return null;
         }
 
-        return dist;
+        return distance;
     }
 }

@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
@@ -22,34 +22,35 @@ public abstract class BaseShip
     protected BaseEngine ImpulseEngine { get; init; }
     protected BaseWarpEngine? WarpEngine { get; init; }
 
-    public virtual BaseTrackResult Fly(int dist)
+    public virtual BaseTrackResult Fly(int distance)
     {
-        int result = ImpulseEngine.TimeToPass(dist);
+        int result = ImpulseEngine.TimeToPass(distance);
         return new ResultSuccess(result, result * ImpulseEngine.Consumption);
     }
 
-    public virtual BaseTrackResult Warp(int dist)
+    public virtual BaseTrackResult Warp(int distance)
     {
         if (WarpEngine == null) return new ResultShipLost { Message = "No Warp Engine on the ship" };
-        int? res = WarpEngine.TimeToWarp(dist);
-        if (res == null) return new ResultShipLost { Message = "To long way to pass" };
-        return new ResultSuccess((int)res, (int)res * 100);
+        int? res = WarpEngine.TimeToWarp(distance);
+        int? result = WarpEngine.TimeToWarp(distance);
+        if (result is null) return new ResultShipLost { Message = "To long way to pass" };
+        return new ResultSuccess((int)result, (int)result * 100);
     }
 
-    public bool Hit(int dmg)
+    public bool Hit(int damage)
     {
         if (Deflector is { IsWorking: true })
         {
-            Deflector.TakeDamage(dmg);
+            Deflector.TakeDamage(damage);
             if (!Deflector.IsWorking)
             {
-                dmg = int.Abs(Deflector.Durability);
+                damage = int.Abs(Deflector.Durability);
             }
         }
 
         if (Deflector is { IsWorking: false })
         {
-            Hull.TakeDamage(dmg);
+            Hull.TakeDamage(damage);
         }
 
         return Hull.IsWorking;

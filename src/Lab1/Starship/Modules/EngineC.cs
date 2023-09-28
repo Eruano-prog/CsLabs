@@ -11,8 +11,8 @@ public sealed class EngineC : BaseEngine
         CanPassNitro = false;
     }
 
-    public override int TimeToPass(int dist)
+    public override int TimeToPass(int distance)
     {
-        return dist / _speed;
+        return distance / _speed;
     }
 }

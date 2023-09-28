@@ -18,11 +18,11 @@ public class CommonTrack : BaseTrack
         _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(BaseObstacle obj)
+    public override void AddObstacle(BaseObstacle obstacle)
     {
-        if (obj is ObstacleMeteor or ObstacleAsteroid)
+        if (obstacle is ObstacleMeteor or ObstacleAsteroid)
         {
-            _obstacles.Add(obj);
+            _obstacles.Add(obstacle);
         }
         else
         {

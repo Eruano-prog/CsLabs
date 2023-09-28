@@ -17,14 +17,14 @@ public class HighDensityTrack : BaseTrack
         _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(BaseObstacle obj)
+    public override void AddObstacle(BaseObstacle obstacle)
     {
-        if (obj is not ObstacleAntimaterFlare)
+        if (obstacle is not ObstacleAntimaterFlare)
         {
             throw new InvalidDataException($"Only Antimater Flares can appear in {nameof(HighDensityTrack)}");
         }
 
-        _obstacles.Add(obj);
+        _obstacles.Add(obstacle);
     }
 
     public override BaseTrackResult Pass(BaseShip ship)

@@ -43,10 +43,10 @@ public class Expedition
         int time = 0;
         foreach (BaseTrack track in _track)
         {
-            BaseTrackResult res = track.Pass(_ship);
-            if (res is not ResultSuccess) return res;
-            fuel += res.FuelToPass;
-            time += res.TimeToPass;
+            BaseTrackResult result = track.Pass(_ship);
+            if (result is not ResultSuccess) return result;
+            fuel += result.FuelToPass;
+            time += result.TimeToPass;
         }
 
         return new ResultSuccess { FuelToPass = fuel, TimeToPass = time };

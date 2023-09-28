@@ -3,20 +3,20 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 public class GammaWarpEngine : BaseWarpEngine
 {
-    private readonly int _maxDist;
+    private readonly int _maxDistance;
 
     public GammaWarpEngine()
     {
-        _maxDist = 15000;
+        _maxDistance = 15000;
     }
 
-    public override int? TimeToWarp(int dist)
+    public override int? TimeToWarp(int distance)
     {
-        if (dist > _maxDist)
+        if (distance > _maxDistance)
         {
             return null;
         }
 
-        return (int)Math.Pow(dist, 2);
+        return (int)Math.Pow(distance, 2);
     }
 }

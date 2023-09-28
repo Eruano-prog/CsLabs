@@ -17,14 +17,14 @@ public class NitrinTrack : BaseTrack
         _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(BaseObstacle obj)
+    public override void AddObstacle(BaseObstacle obstacle)
     {
-        if (obj is not ObstacleWhale)
+        if (obstacle is not ObstacleWhale)
         {
             throw new InvalidDataException($"Only Whales can appear in {nameof(HighDensityTrack)}");
         }
 
-        _obstacles.Add(obj);
+        _obstacles.Add(obstacle);
     }
 
     public override BaseTrackResult Pass(BaseShip ship)
