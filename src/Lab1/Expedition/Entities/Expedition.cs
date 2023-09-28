@@ -25,7 +25,7 @@ public class Expedition
     public Expedition(Collection<BaseTrack> tracks, BaseShip ship)
         : this(ship)
     {
-        if (tracks == null) return;
+        if (tracks is null) return;
         foreach (BaseTrack track in tracks)
         {
             _track.Add(track);

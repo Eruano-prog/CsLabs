@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 public abstract class BaseDeflector
 {

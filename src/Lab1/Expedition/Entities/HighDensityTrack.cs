@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
@@ -29,7 +28,11 @@ public class HighDensityTrack : BaseTrack
 
     public override BaseTrackResult Pass(BaseShip ship)
     {
-        Debug.Assert(ship != null, nameof(ship) + " != null");
+        if (ship is null)
+        {
+            throw new InvalidDataException($"{nameof(ship)} can`t be null");
+        }
+
         for (int i = 0; i < _obstacles.Count; i++)
         {
             if (ship.RejectFlare())

@@ -32,7 +32,7 @@ public class CommonTrack : BaseTrack
 
     public override BaseTrackResult Pass(BaseShip ship)
     {
-        if (ship == null) throw new ArgumentNullException(nameof(ship));
+        if (ship is null) throw new ArgumentNullException(nameof(ship));
         if (_obstacles.Select(obstacle => ship.Hit(obstacle.Damage)).Any(isAlive => !isAlive))
         {
             return new ResultShipDestroyed { Message = nameof(ship) + " destroyed because of obstacle in common space" };

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
@@ -29,7 +28,11 @@ public class NitrinTrack : BaseTrack
 
     public override BaseTrackResult Pass(BaseShip ship)
     {
-        Debug.Assert(ship != null, nameof(ship) + " != null");
+        if (ship is null)
+        {
+            throw new InvalidDataException($"{nameof(ship)} can`t be null");
+        }
+
         if (!ship.AntiNitro)
         {
             foreach (BaseObstacle obstacle in _obstacles)
