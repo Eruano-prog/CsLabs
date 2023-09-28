@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Shuttle : AbsShip
+public class Shuttle : BaseShip
 {
     public Shuttle()
     {

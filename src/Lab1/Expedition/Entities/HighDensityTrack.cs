@@ -6,18 +6,18 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public class HighDensityTrack : AbsTrack
+public class HighDensityTrack : BaseTrack
 {
-    private readonly List<AbsObstacle> _obstacles;
+    private readonly List<BaseObstacle> _obstacles;
     private readonly int _dist;
 
     public HighDensityTrack(int dist)
     {
         _dist = dist;
-        _obstacles = new List<AbsObstacle>();
+        _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(AbsObstacle obj)
+    public override void AddObstacle(BaseObstacle obj)
     {
         if (obj is not AntimaterFlare)
         {
@@ -27,7 +27,7 @@ public class HighDensityTrack : AbsTrack
         _obstacles.Add(obj);
     }
 
-    public override PassTrackResult Pass(AbsShip ship)
+    public override BaseTrackResult Pass(BaseShip ship)
     {
         Debug.Assert(ship != null, nameof(ship) + " != null");
         for (int i = 0; i < _obstacles.Count; i++)
@@ -41,7 +41,7 @@ public class HighDensityTrack : AbsTrack
             }
         }
 
-        PassTrackResult res = ship.Warp(_dist);
+        BaseTrackResult res = ship.Warp(_dist);
         return res;
     }
 }

@@ -7,18 +7,18 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public class CommonTrack : AbsTrack
+public class CommonTrack : BaseTrack
 {
     private readonly int _dist;
-    private readonly List<AbsObstacle> _obstacles;
+    private readonly List<BaseObstacle> _obstacles;
 
     public CommonTrack(int dist)
     {
         _dist = dist;
-        _obstacles = new List<AbsObstacle>();
+        _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(AbsObstacle obj)
+    public override void AddObstacle(BaseObstacle obj)
     {
         if (obj is Meteor or Asteroid)
         {
@@ -30,7 +30,7 @@ public class CommonTrack : AbsTrack
         }
     }
 
-    public override PassTrackResult Pass(AbsShip ship)
+    public override BaseTrackResult Pass(BaseShip ship)
     {
         if (ship == null) throw new ArgumentNullException(nameof(ship));
         if (_obstacles.Select(obstacle => ship.Hit(obstacle.Damage)).Any(isAlive => !isAlive))
@@ -38,7 +38,7 @@ public class CommonTrack : AbsTrack
             return new ShipDestroyed { Message = nameof(ship) + " destroyed because of obstacle in common space" };
         }
 
-        PassTrackResult res = ship.Fly(_dist);
+        BaseTrackResult res = ship.Fly(_dist);
         return res;
     }
 }

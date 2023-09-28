@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Avgur : AbsShip
+public class Avgur : BaseShip
 {
     public Avgur()
     {

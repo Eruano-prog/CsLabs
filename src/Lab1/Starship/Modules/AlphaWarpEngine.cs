@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public class AlphaWarpEngine : AbsWarpEngine
+public class AlphaWarpEngine : BaseWarpEngine
 {
     private readonly int _maxDist;
     public AlphaWarpEngine()

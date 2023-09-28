@@ -3,9 +3,9 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public abstract class AbsShip
+public abstract class BaseShip
 {
-    protected AbsShip()
+    protected BaseShip()
      {
          Hull = new FirstHull();
          ImpulseEngine = new EngineC();
@@ -15,20 +15,20 @@ public abstract class AbsShip
      }
 
     public bool AntiNitro { get; protected set; }
-    protected AbsHull Hull { get; init; }
+    protected BaseHull Hull { get; init; }
 
-    protected AbsDeflector? Deflector { get; init; }
+    protected BaseDeflector? Deflector { get; init; }
 
-    protected AbsEngine ImpulseEngine { get; init; }
-    protected AbsWarpEngine? WarpEngine { get; init; }
+    protected BaseEngine ImpulseEngine { get; init; }
+    protected BaseWarpEngine? WarpEngine { get; init; }
 
-    public virtual PassTrackResult Fly(int dist)
+    public virtual BaseTrackResult Fly(int dist)
     {
         int result = ImpulseEngine.TimeToPass(dist);
         return new Success(result, result * ImpulseEngine.Consumption);
     }
 
-    public virtual PassTrackResult Warp(int dist)
+    public virtual BaseTrackResult Warp(int dist)
     {
         if (WarpEngine == null) return new ShipLost { Message = "No Warp Engine on the ship" };
         int? res = WarpEngine.TimeToWarp(dist);

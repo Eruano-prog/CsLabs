@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Meredian : AbsShip
+public class Meredian : BaseShip
 {
     public Meredian(bool photo = false)
     {

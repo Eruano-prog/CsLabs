@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Valkas : AbsShip
+public class Valkas : BaseShip
 {
     public Valkas(bool photo = false)
     : base()

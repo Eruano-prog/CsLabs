@@ -1,14 +1,14 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public abstract class AbsDeflector
+public abstract class BaseDeflector
 {
-    protected AbsDeflector(bool photon)
+    protected BaseDeflector(bool photon)
     {
         if (photon) PhotonCount = 3;
         else PhotonCount = 0;
     }
 
-    protected AbsDeflector()
+    protected BaseDeflector()
     {
         PhotonCount = 0;
     }

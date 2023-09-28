@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 
-public class AbsObstacle
+public abstract class BaseObstacle
 {
     public int Damage { get; protected set; }
 }

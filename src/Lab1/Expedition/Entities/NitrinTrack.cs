@@ -6,18 +6,18 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public class NitrinTrack : AbsTrack
+public class NitrinTrack : BaseTrack
 {
-    private readonly List<AbsObstacle> _obstacles;
+    private readonly List<BaseObstacle> _obstacles;
     private readonly int _dist;
 
     public NitrinTrack(int dist)
     {
         _dist = dist;
-        _obstacles = new List<AbsObstacle>();
+        _obstacles = new List<BaseObstacle>();
     }
 
-    public override void AddObstacle(AbsObstacle obj)
+    public override void AddObstacle(BaseObstacle obj)
     {
         if (obj is not Whale)
         {
@@ -27,12 +27,12 @@ public class NitrinTrack : AbsTrack
         _obstacles.Add(obj);
     }
 
-    public override PassTrackResult Pass(AbsShip ship)
+    public override BaseTrackResult Pass(BaseShip ship)
     {
         Debug.Assert(ship != null, nameof(ship) + " != null");
         if (!ship.AntiNitro)
         {
-            foreach (AbsObstacle obstacle in _obstacles)
+            foreach (BaseObstacle obstacle in _obstacles)
             {
                 ship.Hit(obstacle.Damage);
             }
@@ -49,7 +49,7 @@ public class NitrinTrack : AbsTrack
             return new ShipLost() { Message = $"{nameof(ship)} lost because it can`t pass through Nitrin track" };
         }
 
-        PassTrackResult res = ship.Fly(_dist);
+        BaseTrackResult res = ship.Fly(_dist);
         return res;
     }
 }

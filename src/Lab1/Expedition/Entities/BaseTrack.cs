@@ -3,8 +3,8 @@ using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
-public abstract class AbsTrack
+public abstract class BaseTrack
 {
-    public abstract PassTrackResult Pass(AbsShip ship);
-    public abstract void AddObstacle(AbsObstacle obj);
+    public abstract BaseTrackResult Pass(BaseShip ship);
+    public abstract void AddObstacle(BaseObstacle obj);
 }

@@ -13,7 +13,7 @@ public static class TestCases
     [Fact]
     public static void Test1()
     {
-        var ships = new List<AbsShip>() { new Shuttle(), new Avgur() };
+        var ships = new List<BaseShip>() { new Shuttle(), new Avgur() };
         var results = ships.Select(ship => new Expedition.Entities.Expedition(new HighDensityTrack(10000), ship)).Select(exp => exp.Complete()).ToList();
 
         bool assert = (results[0] is ShipLost) & (results[1] is ShipLost);
@@ -23,8 +23,8 @@ public static class TestCases
     [Fact]
     public static void Test2()
     {
-        var ships = new List<AbsShip>() { new Valkas(), new Valkas(true) };
-        AbsTrack track = new HighDensityTrack(10000);
+        var ships = new List<BaseShip>() { new Valkas(), new Valkas(true) };
+        BaseTrack track = new HighDensityTrack(10000);
         track.AddObstacle(new AntimaterFlare());
         var results = ships.Select(ship => new Expedition.Entities.Expedition(track, ship)).Select(exp => exp.Complete()).ToList();
 
@@ -35,7 +35,7 @@ public static class TestCases
     [Fact]
     public static void Test3()
     {
-        var ships = new List<AbsShip>() { new Valkas(), new Avgur(), new Meredian() };
+        var ships = new List<BaseShip>() { new Valkas(), new Avgur(), new Meredian() };
         var track = new NitrinTrack(10000);
         track.AddObstacle(new Whale());
         var results = ships.Select(ship => new Expedition.Entities.Expedition(track, ship)).Select(exp => exp.Complete()).ToList();
@@ -47,7 +47,7 @@ public static class TestCases
     [Fact]
     public static void Test4()
     {
-        var ships = new List<AbsShip>() { new Shuttle(), new Meredian() };
+        var ships = new List<BaseShip>() { new Shuttle(), new Meredian() };
         var results = ships.Select(ship => new Expedition.Entities.Expedition(new CommonTrack(200), ship)).Select(exp => exp.Complete()).ToList();
 
         int cheapest = results[1].FuelToPass;
@@ -65,7 +65,7 @@ public static class TestCases
     [Fact]
     public static void Test5()
     {
-        var ships = new List<AbsShip>() { new Avgur(), new Stella() };
+        var ships = new List<BaseShip>() { new Avgur(), new Stella() };
         var results = ships.Select(ship => new Expedition.Entities.Expedition(new HighDensityTrack(7500), ship)).Select(exp => exp.Complete()).ToList();
 
         bool assert = (results[0] is ShipLost) & (results[1] is Success);
@@ -75,7 +75,7 @@ public static class TestCases
     [Fact]
     public static void Test6()
     {
-        var ships = new List<AbsShip>() { new Shuttle(), new Valkas() };
+        var ships = new List<BaseShip>() { new Shuttle(), new Valkas() };
         var results = ships.Select(ship => new Expedition.Entities.Expedition(new NitrinTrack(7500), ship)).Select(exp => exp.Complete()).ToList();
 
         bool assert = (results[0] is ShipLost) & (results[1] is Success);
@@ -85,8 +85,8 @@ public static class TestCases
     [Fact]
     public static void Test7()
     {
-        var ships = new List<AbsShip>() { new Shuttle(), new Meredian(), new Avgur() };
-        var tracks = new Collection<AbsTrack>() { new HighDensityTrack(4000), new CommonTrack(500) };
+        var ships = new List<BaseShip>() { new Shuttle(), new Meredian(), new Avgur() };
+        var tracks = new Collection<BaseTrack>() { new HighDensityTrack(4000), new CommonTrack(500) };
         var results = ships.Select(ship => new Expedition.Entities.Expedition(tracks, ship)).Select(exp => exp.Complete()).ToList();
 
         bool assert = (results[0] is ShipLost) & (results[1] is ShipLost) & (results[2] is Success);

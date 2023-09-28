@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public sealed class EngineC : AbsEngine
+public sealed class EngineC : BaseEngine
 {
     private readonly int _speed;
 

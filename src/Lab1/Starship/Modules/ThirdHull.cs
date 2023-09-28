@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public class ThirdHull : AbsHull
+public class ThirdHull : BaseHull
 {
     public ThirdHull() => Durability = 100;
 }

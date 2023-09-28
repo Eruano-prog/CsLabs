@@ -7,43 +7,43 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
 
 public class Expedition
 {
-    private readonly List<AbsTrack> _track;
-    private readonly AbsShip _ship;
+    private readonly List<BaseTrack> _track;
+    private readonly BaseShip _ship;
 
-    public Expedition(AbsShip ship)
+    public Expedition(BaseShip ship)
     {
         _ship = ship;
-        _track = new List<AbsTrack>();
+        _track = new List<BaseTrack>();
     }
 
-    public Expedition(AbsTrack track, AbsShip ship)
+    public Expedition(BaseTrack track, BaseShip ship)
         : this(ship)
     {
-        _track = new List<AbsTrack>() { track };
+        _track = new List<BaseTrack>() { track };
     }
 
-    public Expedition(Collection<AbsTrack> tracks, AbsShip ship)
+    public Expedition(Collection<BaseTrack> tracks, BaseShip ship)
         : this(ship)
     {
         if (tracks == null) return;
-        foreach (AbsTrack track in tracks)
+        foreach (BaseTrack track in tracks)
         {
             _track.Add(track);
         }
     }
 
-    public void AddTrack(AbsTrack track)
+    public void AddTrack(BaseTrack track)
     {
         _track.Add(track);
     }
 
-    public PassTrackResult Complete()
+    public BaseTrackResult Complete()
     {
         int fuel = 0;
         int time = 0;
-        foreach (AbsTrack track in _track)
+        foreach (BaseTrack track in _track)
         {
-            PassTrackResult res = track.Pass(_ship);
+            BaseTrackResult res = track.Pass(_ship);
             if (res is not Success) return res;
             fuel += res.FuelToPass;
             time += res.TimeToPass;

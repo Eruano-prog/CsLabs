@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public class SecondDeflector : AbsDeflector
+public class SecondDeflector : BaseDeflector
 {
     public SecondDeflector(bool photon)
     {

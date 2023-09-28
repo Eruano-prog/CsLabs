@@ -2,7 +2,7 @@ using System;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
 
-public class EngineE : AbsEngine
+public class EngineE : BaseEngine
 {
     public EngineE()
     {
