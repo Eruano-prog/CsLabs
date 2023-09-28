@@ -2,13 +2,11 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Stella : BaseShip
+public class ShipShuttle : BaseShip
 {
-    public Stella(bool photo = false)
+    public ShipShuttle()
     {
         ImpulseEngine = new EngineC();
-        WarpEngine = new OmegaWarpEngine();
         Hull = new FirstHull();
-        Deflector = new FirstDeflector(photo);
     }
 }

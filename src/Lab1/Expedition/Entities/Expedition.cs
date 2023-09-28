@@ -44,11 +44,11 @@ public class Expedition
         foreach (BaseTrack track in _track)
         {
             BaseTrackResult res = track.Pass(_ship);
-            if (res is not Success) return res;
+            if (res is not ResultSuccess) return res;
             fuel += res.FuelToPass;
             time += res.TimeToPass;
         }
 
-        return new Success { FuelToPass = fuel, TimeToPass = time };
+        return new ResultSuccess { FuelToPass = fuel, TimeToPass = time };
     }
 }

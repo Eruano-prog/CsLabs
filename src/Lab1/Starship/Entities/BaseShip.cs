@@ -25,15 +25,15 @@ public abstract class BaseShip
     public virtual BaseTrackResult Fly(int dist)
     {
         int result = ImpulseEngine.TimeToPass(dist);
-        return new Success(result, result * ImpulseEngine.Consumption);
+        return new ResultSuccess(result, result * ImpulseEngine.Consumption);
     }
 
     public virtual BaseTrackResult Warp(int dist)
     {
-        if (WarpEngine == null) return new ShipLost { Message = "No Warp Engine on the ship" };
+        if (WarpEngine == null) return new ResultShipLost { Message = "No Warp Engine on the ship" };
         int? res = WarpEngine.TimeToWarp(dist);
-        if (res == null) return new ShipLost { Message = "To long way to pass" };
-        return new Success((int)res, (int)res * 100);
+        if (res == null) return new ResultShipLost { Message = "To long way to pass" };
+        return new ResultSuccess((int)res, (int)res * 100);
     }
 
     public bool Hit(int dmg)

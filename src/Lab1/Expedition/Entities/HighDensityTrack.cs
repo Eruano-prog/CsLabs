@@ -19,7 +19,7 @@ public class HighDensityTrack : BaseTrack
 
     public override void AddObstacle(BaseObstacle obj)
     {
-        if (obj is not AntimaterFlare)
+        if (obj is not ObstacleAntimaterFlare)
         {
             throw new InvalidDataException($"Only Antimater Flares can appear in {nameof(HighDensityTrack)}");
         }
@@ -34,7 +34,7 @@ public class HighDensityTrack : BaseTrack
         {
             if (ship.RejectFlare())
             {
-                return new CrewDied
+                return new ResultCrewDied
                 {
                     Message = "Could not reject antimater flare",
                 };

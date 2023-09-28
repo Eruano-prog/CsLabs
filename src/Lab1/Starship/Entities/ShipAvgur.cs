@@ -2,9 +2,9 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Avgur : BaseShip
+public class ShipAvgur : BaseShip
 {
-    public Avgur()
+    public ShipAvgur()
     {
         ImpulseEngine = new EngineE();
         WarpEngine = new AlphaWarpEngine();

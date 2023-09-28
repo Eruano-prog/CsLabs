@@ -20,7 +20,7 @@ public class CommonTrack : BaseTrack
 
     public override void AddObstacle(BaseObstacle obj)
     {
-        if (obj is Meteor or Asteroid)
+        if (obj is ObstacleMeteor or ObstacleAsteroid)
         {
             _obstacles.Add(obj);
         }
@@ -35,7 +35,7 @@ public class CommonTrack : BaseTrack
         if (ship == null) throw new ArgumentNullException(nameof(ship));
         if (_obstacles.Select(obstacle => ship.Hit(obstacle.Damage)).Any(isAlive => !isAlive))
         {
-            return new ShipDestroyed { Message = nameof(ship) + " destroyed because of obstacle in common space" };
+            return new ResultShipDestroyed { Message = nameof(ship) + " destroyed because of obstacle in common space" };
         }
 
         BaseTrackResult res = ship.Fly(_dist);

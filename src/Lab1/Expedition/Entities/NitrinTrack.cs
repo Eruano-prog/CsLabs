@@ -19,7 +19,7 @@ public class NitrinTrack : BaseTrack
 
     public override void AddObstacle(BaseObstacle obj)
     {
-        if (obj is not Whale)
+        if (obj is not ObstacleWhale)
         {
             throw new InvalidDataException($"Only Whales can appear in {nameof(HighDensityTrack)}");
         }
@@ -40,13 +40,13 @@ public class NitrinTrack : BaseTrack
 
         if (!ship.IsOk())
         {
-            var pass = new ShipDestroyed() { Message = $"{nameof(ship)} Crushed because of whales" };
+            var pass = new ResultShipDestroyed() { Message = $"{nameof(ship)} Crushed because of whales" };
             return pass;
         }
 
         if (!ship.FlyThroughNitro())
         {
-            return new ShipLost() { Message = $"{nameof(ship)} lost because it can`t pass through Nitrin track" };
+            return new ResultShipLost() { Message = $"{nameof(ship)} lost because it can`t pass through Nitrin track" };
         }
 
         BaseTrackResult res = ship.Fly(_dist);

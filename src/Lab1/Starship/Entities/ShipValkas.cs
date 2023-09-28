@@ -2,13 +2,14 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
 
-public class Meredian : BaseShip
+public class ShipValkas : BaseShip
 {
-    public Meredian(bool photo = false)
+    public ShipValkas(bool photo = false)
+    : base()
     {
         ImpulseEngine = new EngineE();
+        WarpEngine = new GammaWarpEngine();
         Hull = new SecondHull();
-        Deflector = new SecondDeflector(photo);
-        AntiNitro = true;
+        Deflector = new FirstDeflector(photo);
     }
 }

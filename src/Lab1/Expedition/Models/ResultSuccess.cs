@@ -1,8 +1,8 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
 
-public sealed record Success() : BaseTrackResult
+public sealed record ResultSuccess() : BaseTrackResult
 {
-    public Success(int time, int fuel)
+    public ResultSuccess(int time, int fuel)
         : this()
     {
         TimeToPass = time;
