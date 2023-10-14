@@ -1,0 +1,37 @@
+﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Starship.Modules;
+
+public abstract class BaseDeflector
+{
+    protected BaseDeflector(bool photon)
+    {
+        if (photon) PhotonCount = 3;
+        else PhotonCount = 0;
+    }
+
+    protected BaseDeflector()
+    {
+        PhotonCount = 0;
+    }
+
+    public bool IsWorking { get; private set; } = true;
+    public int PhotonCount { get; protected set; }
+    public int Durability { get; protected set; }
+
+    public virtual bool TakeDamage(int damage)
+    {
+        Durability -= damage;
+        if (Durability <= 0) IsWorking = false;
+        return Durability >= 0;
+    }
+
+    public bool Flare()
+    {
+        if (PhotonCount > 0)
+        {
+            PhotonCount -= 1;
+            return false;
+        }
+
+        return true;
+    }
+}

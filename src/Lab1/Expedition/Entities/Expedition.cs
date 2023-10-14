@@ -1,0 +1,54 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab1.Expedition.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Starship.Entities;
+
+namespace Itmo.ObjectOrientedProgramming.Lab1.Expedition.Entities;
+
+public class Expedition
+{
+    private readonly List<BaseTrack> _track;
+    private readonly BaseShip _ship;
+
+    public Expedition(BaseShip ship)
+    {
+        _ship = ship;
+        _track = new List<BaseTrack>();
+    }
+
+    public Expedition(BaseTrack track, BaseShip ship)
+        : this(ship)
+    {
+        _track = new List<BaseTrack>() { track };
+    }
+
+    public Expedition(Collection<BaseTrack> tracks, BaseShip ship)
+        : this(ship)
+    {
+        if (tracks is null) return;
+        foreach (BaseTrack track in tracks)
+        {
+            _track.Add(track);
+        }
+    }
+
+    public void AddTrack(BaseTrack track)
+    {
+        _track.Add(track);
+    }
+
+    public BaseTrackResult Complete()
+    {
+        int fuel = 0;
+        int time = 0;
+        foreach (BaseTrack track in _track)
+        {
+            BaseTrackResult result = track.Pass(_ship);
+            if (result is not ResultSuccess) return result;
+            fuel += result.FuelToPass;
+            time += result.TimeToPass;
+        }
+
+        return new ResultSuccess(time, fuel);
+    }
+}
