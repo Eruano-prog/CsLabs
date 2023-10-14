@@ -49,6 +49,6 @@ public class Expedition
             time += result.TimeToPass;
         }
 
-        return new ResultSuccess { FuelToPass = fuel, TimeToPass = time };
+        return new ResultSuccess(time, fuel);
     }
 }

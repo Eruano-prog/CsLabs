@@ -30,10 +30,10 @@ public abstract class BaseShip
 
     public virtual BaseTrackResult Warp(int distance)
     {
-        if (WarpEngine is null) return new ResultShipLost { Message = "No Warp Engine on the ship" };
+        if (WarpEngine is null) return new ResultShipLost("No Warp Engine on the ship");
 
         int? result = WarpEngine.TimeToWarp(distance);
-        if (result is null) return new ResultShipLost { Message = "To long way to pass" };
+        if (result is null) return new ResultShipLost("To long way to pass");
 
         return new ResultSuccess((int)result, (int)result * 100);
     }

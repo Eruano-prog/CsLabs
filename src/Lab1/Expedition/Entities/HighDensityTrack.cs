@@ -37,10 +37,7 @@ public class HighDensityTrack : BaseTrack
         {
             if (ship.RejectFlare())
             {
-                return new ResultCrewDied
-                {
-                    Message = "Could not reject antimater flare",
-                };
+                return new ResultCrewDied("Could not reject antimater flare");
             }
         }
 

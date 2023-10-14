@@ -43,13 +43,13 @@ public class NitrinTrack : BaseTrack
 
         if (!ship.IsOk())
         {
-            var pass = new ResultShipDestroyed() { Message = $"{nameof(ship)} Crushed because of whales" };
+            var pass = new ResultShipDestroyed($"{nameof(ship)} Crushed because of whales");
             return pass;
         }
 
         if (!ship.FlyThroughNitro())
         {
-            return new ResultShipLost() { Message = $"{nameof(ship)} lost because it can`t pass through Nitrin track" };
+            return new ResultShipLost($"{nameof(ship)} lost because it can`t pass through Nitrin track");
         }
 
         BaseTrackResult res = ship.Fly(_dist);
