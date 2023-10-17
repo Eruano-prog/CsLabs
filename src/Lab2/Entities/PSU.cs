@@ -1,10 +1,23 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Services;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.Models;
+using Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
-public class PSU : IPart
+public class Psu : BasePart
 {
-    public bool CanBePlaced(ComputerConfiguration computer)
+    public Psu(string name, int power)
+        : base(name)
+    {
+        Power = power;
+    }
+
+    public int Power { get; set; }
+    public override Parts GetPart()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool CanBePlaced(ComputerConfiguration computer)
     {
         throw new System.NotImplementedException();
     }

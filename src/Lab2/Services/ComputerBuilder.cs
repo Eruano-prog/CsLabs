@@ -1,7 +1,4 @@
-﻿using System.Threading;
-using Itmo.ObjectOrientedProgramming.Lab2.Entities;
-
-namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public class ComputerBuilder
 {
@@ -15,10 +12,5 @@ public class ComputerBuilder
     public void Reset()
     {
         _computer = new ComputerConfiguration();
-    }
-
-    public void AddCPU()
-    {
-        _computer.Cpu = new CPU()
     }
 }
