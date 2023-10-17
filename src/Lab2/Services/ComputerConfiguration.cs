@@ -14,4 +14,8 @@ public class ComputerConfiguration
     public Psu? Psu { get; internal set; }
     public Ssd? Ssd { get; internal set; }
     public PcCase? PcCase { get; internal set; }
+
+    public int CurPower { get; set; }
+    public int CurPci { get; set; }
+    public int CurSata { get; set; }
 }

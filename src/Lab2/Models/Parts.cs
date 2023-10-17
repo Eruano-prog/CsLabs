@@ -2,7 +2,6 @@
 
 public enum Parts
 {
-    BIOS,
     CPU,
     CPUCooler,
     DRAM,

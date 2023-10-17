@@ -23,6 +23,8 @@ public class PcCase : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        throw new System.NotImplementedException();
+        if (computer is null) return false;
+        if (computer.GraphicCard?.Lenght > GPULenght || computer.GraphicCard?.Width > GPUWidth) return false;
+        return true;
     }
 }

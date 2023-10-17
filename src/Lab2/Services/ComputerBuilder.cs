@@ -25,6 +25,7 @@ public class ComputerBuilder
         if (cpu.CanBePlaced(_computer))
         {
             _computer.Cpu = cpu;
+            _computer.CurPower += cpu.Power;
         }
         else
         {
@@ -51,6 +52,7 @@ public class ComputerBuilder
         if (ram.CanBePlaced(_computer))
         {
             _computer.Dram = ram;
+            _computer.CurPower += ram.Power;
         }
         else
         {
@@ -64,6 +66,7 @@ public class ComputerBuilder
         if (gpu.CanBePlaced(_computer))
         {
             _computer.GraphicCard = gpu;
+            _computer.CurPci++;
         }
         else
         {
@@ -77,6 +80,9 @@ public class ComputerBuilder
         if (hdd.CanBePlaced(_computer))
         {
             _computer.Hdd = hdd;
+
+            _computer.CurPower += hdd.Power;
+            _computer.CurSata++;
         }
         else
         {

@@ -30,6 +30,11 @@ public class Dram : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        throw new System.NotImplementedException();
+        if (computer is null) return false;
+
+        if (computer.Motherboard?.DdrVersion != Version) return false;
+        if (computer.Motherboard?.DdrFrequency <= Frequency) return false;
+
+        return true;
     }
 }

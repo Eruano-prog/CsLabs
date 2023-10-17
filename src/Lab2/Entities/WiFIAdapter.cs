@@ -21,6 +21,8 @@ public class WiFiAdapter : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        throw new System.NotImplementedException();
+        if (computer is null) return false;
+        if (computer.Motherboard?.WiFi == true) return false;
+        return true;
     }
 }

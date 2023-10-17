@@ -29,6 +29,10 @@ public class GraphicCard : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        throw new System.NotImplementedException();
+        if (computer is null) return false;
+
+        if (computer.PcCase?.GPUWidth < Width || computer.PcCase?.GPULenght < Lenght) return false;
+
+        return true;
     }
 }

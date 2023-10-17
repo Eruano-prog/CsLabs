@@ -19,6 +19,7 @@ public class Psu : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        throw new System.NotImplementedException();
+        if (computer is null) return false;
+        return true;
     }
 }
