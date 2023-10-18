@@ -19,7 +19,13 @@ public class ComputerBuilder
         _computer = new ComputerConfiguration();
     }
 
-    public void WithCPU(string name)
+    public ComputerConfiguration Build()
+    {
+        if (_computer.CurPower <= _computer.Psu?.Power) return _computer;
+        return _computer;
+    }
+
+    public ComputerBuilder WithCPU(string name)
     {
         var cpu = (Cpu)_datebase.GetPart(Parts.CPU, name);
         if (cpu.CanBePlaced(_computer))
@@ -27,26 +33,22 @@ public class ComputerBuilder
             _computer.Cpu = cpu;
             _computer.CurPower += cpu.Power;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithCooler(string name)
+    public ComputerBuilder WithCooler(string name)
     {
         var cooler = (CPUCooler)_datebase.GetPart(Parts.CPUCooler, name);
         if (cooler.CanBePlaced(_computer))
         {
             _computer.Cooler = cooler;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithDram(string name)
+    public ComputerBuilder WithDram(string name)
     {
         var ram = (Dram)_datebase.GetPart(Parts.DRAM, name);
         if (ram.CanBePlaced(_computer))
@@ -54,13 +56,11 @@ public class ComputerBuilder
             _computer.Dram = ram;
             _computer.CurPower += ram.Power;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithGPU(string name)
+    public ComputerBuilder WithGPU(string name)
     {
         var gpu = (GraphicCard)_datebase.GetPart(Parts.GraphicCard, name);
         if (gpu.CanBePlaced(_computer))
@@ -68,13 +68,11 @@ public class ComputerBuilder
             _computer.GraphicCard = gpu;
             _computer.CurPci++;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithHDD(string name)
+    public ComputerBuilder WithHDD(string name)
     {
         var hdd = (Hdd)_datebase.GetPart(Parts.HDD, name);
         if (hdd.CanBePlaced(_computer))
@@ -84,74 +82,62 @@ public class ComputerBuilder
             _computer.CurPower += hdd.Power;
             _computer.CurSata++;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithMotherboard(string name)
+    public ComputerBuilder WithMotherboard(string name)
     {
         var motherboard = (Motherboard)_datebase.GetPart(Parts.Motherboard, name);
         if (motherboard.CanBePlaced(_computer))
         {
             _computer.Motherboard = motherboard;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithCase(string name)
+    public ComputerBuilder WithCase(string name)
     {
         var pcCase = (PcCase)_datebase.GetPart(Parts.PCCase, name);
         if (pcCase.CanBePlaced(_computer))
         {
             _computer.PcCase = pcCase;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithPSU(string name)
+    public ComputerBuilder WithPSU(string name)
     {
         var psu = (Psu)_datebase.GetPart(Parts.PSU, name);
         if (psu.CanBePlaced(_computer))
         {
             _computer.Psu = psu;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithSSD(string name)
+    public ComputerBuilder WithSSD(string name)
     {
         var ssd = (Ssd)_datebase.GetPart(Parts.SSD, name);
         if (ssd.CanBePlaced(_computer))
         {
             _computer.Ssd = ssd;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 
-    public void WithWiFi(string name)
+    public ComputerBuilder WithWiFi(string name)
     {
         var wifi = (WiFiAdapter)_datebase.GetPart(Parts.WiFiAdapter, name);
         if (wifi.CanBePlaced(_computer))
         {
             _computer.WiFiAdapter = wifi;
         }
-        else
-        {
-            return;
-        }
+
+        return this;
     }
 }
