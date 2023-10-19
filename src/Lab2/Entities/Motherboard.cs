@@ -37,10 +37,10 @@ public class Motherboard : BasePart
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
         if (computer is null) return false;
-        if (Socket != computer.Cpu?.Socket) return false;
-        if (Bios.Version >= computer.Cpu.MinBios) return false;
-        if (DdrVersion == computer.Dram?.Version) return false;
+        if (computer.Cpu is not null && (Socket != computer.Cpu.Socket || Bios.Version < computer.Cpu.MinBios)) return false;
+        if (computer.Dram is not null && DdrVersion != computer.Dram.Version) return false;
         if (computer.WiFiAdapter is not null && WiFi) return false;
+
         return true;
     }
 }

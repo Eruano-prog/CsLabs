@@ -21,6 +21,11 @@ public class CPUCooler : BasePart
 
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
-        return computer is not null && computer.Cpu?.Socket == Socket;
+        if (computer is null) return false;
+
+        if (computer.Motherboard is not null && computer.Motherboard.Socket != Socket) return false;
+        if (computer.Cpu is not null && computer.Cpu.Socket != Socket) return false;
+
+        return true;
     }
 }

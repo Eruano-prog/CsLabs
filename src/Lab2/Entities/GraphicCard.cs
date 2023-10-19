@@ -31,7 +31,7 @@ public class GraphicCard : BasePart
     {
         if (computer is null) return false;
 
-        if (computer.PcCase?.GPUWidth < Width || computer.PcCase?.GPULenght < Lenght) return false;
+        if (computer.PcCase is not null && (computer.PcCase.GPUWidth < Width || computer.PcCase.GPULenght < Lenght)) return false;
 
         return true;
     }

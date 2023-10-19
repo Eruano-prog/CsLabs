@@ -24,7 +24,8 @@ public class PcCase : BasePart
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
         if (computer is null) return false;
-        if (computer.GraphicCard?.Lenght > GPULenght || computer.GraphicCard?.Width > GPUWidth) return false;
+        if (computer.GraphicCard is not null &&
+            (computer.GraphicCard.Lenght > GPULenght || computer.GraphicCard.Width > GPUWidth)) return false;
         return true;
     }
 }

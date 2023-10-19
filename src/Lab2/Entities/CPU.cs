@@ -28,9 +28,9 @@ public class Cpu : BasePart
     {
         if (computer is null) return false;
 
-        if (computer.Motherboard?.Socket != Socket) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.Socket != Socket) return false;
 
-        if (computer.Motherboard?.Bios.Version < MinBios) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.Bios.Version < MinBios) return false;
 
         return true;
     }

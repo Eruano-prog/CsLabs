@@ -32,8 +32,7 @@ public class Dram : BasePart
     {
         if (computer is null) return false;
 
-        if (computer.Motherboard?.DdrVersion != Version) return false;
-        if (computer.Motherboard?.DdrFrequency <= Frequency) return false;
+        if (computer.Motherboard is not null && (computer.Motherboard.DdrVersion != Version || computer.Motherboard.DdrFrequency <= Frequency)) return false;
 
         return true;
     }
