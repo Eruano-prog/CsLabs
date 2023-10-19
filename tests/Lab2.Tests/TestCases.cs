@@ -13,7 +13,7 @@ public class TestCases
 
           ComputerConfiguration computer = new ComputerBuilder(repository)
                .WithGPU("RTX 3060Ti")
-               .WithCPU("i7-12700")
+               .WithCPU("Ryzen 5 7600")
                .WithCooler("Intel Box")
                .WithDram("Samsung")
                .WithHDD("Samsung")

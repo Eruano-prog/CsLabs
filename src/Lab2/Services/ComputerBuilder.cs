@@ -21,7 +21,21 @@ public class ComputerBuilder
 
     public ComputerConfiguration Build()
     {
-        if (_computer.CurPower <= _computer.Psu?.Power) return _computer;
+        if (_computer.CurPower > _computer.Psu?.Power)
+        {
+            throw new NotEnoughPowerException($"Computer needs {_computer.CurPower} but it has only {_computer.Psu?.Power}");
+        }
+
+        if (_computer.CurPci > _computer.Motherboard?.PciCount)
+        {
+            throw new NotEnoughSlotsException("Not enough PCI slots");
+        }
+
+        if (_computer.CurSata > _computer.Motherboard?.SataCount)
+        {
+            throw new NotEnoughSlotsException("Not enough Sata slots");
+        }
+
         return _computer;
     }
 
