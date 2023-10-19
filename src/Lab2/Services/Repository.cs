@@ -8,11 +8,22 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public class Repository
 {
-    private readonly Dictionary<string, List<BasePart>> _database;
+    private static Repository? instance;
+    private Dictionary<string, List<BasePart>> _database;
 
-    public Repository()
+    private Repository()
     {
         _database = new Dictionary<string, List<BasePart>>();
+    }
+
+    public static Repository TakeInstance()
+    {
+        if (instance is null)
+        {
+            instance = new Repository();
+        }
+
+        return instance;
     }
 
     public void AddPart(BasePart part)

@@ -9,7 +9,7 @@ public class TestCases
      [Fact]
      public void Test1()
      {
-          var repository = new Repository();
+          var repository = Repository.TakeInstance();
           repository.Init();
 
           try
