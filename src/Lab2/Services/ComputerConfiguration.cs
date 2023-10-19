@@ -1,4 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
@@ -18,15 +19,15 @@ public class ComputerConfiguration
     public int CurPci { get; set; }
     public int CurSata { get; set; }
 
-    public bool IsValid()
+    public Parts? IsValid()
     {
-        if (Cpu is null) return false;
-        if (Dram is null) return false;
-        if (Cooler is null) return false;
-        if (GraphicCard is null) return false;
-        if (Motherboard is null) return false;
-        if (PcCase is null) return false;
-        if (Hdd is null && Ssd is null) return false;
-        return true;
+        if (Cpu is null) return Parts.CPU;
+        if (Dram is null) return Parts.DRAM;
+        if (Cooler is null) return Parts.CPUCooler;
+        if (GraphicCard is null) return Parts.GraphicCard;
+        if (Motherboard is null) return Parts.Motherboard;
+        if (PcCase is null) return Parts.PCCase;
+        if (Hdd is null && Ssd is null) return Parts.HDD;
+        return null;
     }
 }

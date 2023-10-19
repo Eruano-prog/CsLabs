@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Services;
+﻿using Itmo.ObjectOrientedProgramming.Lab2.Models;
+using Itmo.ObjectOrientedProgramming.Lab2.Services;
 using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Tests;
@@ -11,17 +12,24 @@ public class TestCases
           var repository = new Repository();
           repository.Init();
 
-          ComputerConfiguration computer = new ComputerBuilder(repository)
-               .WithGPU("RTX 3060Ti")
-               .WithCPU("Ryzen 5 7600")
-               .WithCooler("Intel Box")
-               .WithDram("Samsung")
-               .WithHDD("Samsung")
-               .WithMotherboard("Asus")
-               .WithCase("Zalman")
-               .WithPSU("Cougar")
-               .Build();
+          try
+          {
+               ComputerConfiguration computer = new ComputerBuilder(repository)
+                    .WithGPU("RTX 3060Ti")
+                    .WithCPU("i7-12700")
+                    .WithCooler("Intel Box")
+                    .WithDram("Samsung")
+                    .WithHDD("Samsung")
+                    .WithMotherboard("Asus")
+                    .WithCase("Zalman")
+                    .WithPSU("Cougar")
+                    .Build();
+          }
+          catch (ComputerNotReadyException e)
+          {
+               Assert.Fail(e.Message);
+          }
 
-          Assert.True(computer is ComputerConfiguration);
+          Assert.True(true);
      }
 }
