@@ -36,6 +36,11 @@ public class ComputerBuilder
             throw new NotEnoughSlotsException("Not enough Sata slots");
         }
 
+        if (!_computer.IsValid())
+        {
+            throw new ComputerNotReadyException();
+        }
+
         return _computer;
     }
 

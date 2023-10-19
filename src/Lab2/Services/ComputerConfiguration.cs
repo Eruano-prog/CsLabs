@@ -14,8 +14,19 @@ public class ComputerConfiguration
     public Psu? Psu { get; internal set; }
     public Ssd? Ssd { get; internal set; }
     public PcCase? PcCase { get; internal set; }
-
     public int CurPower { get; set; }
     public int CurPci { get; set; }
     public int CurSata { get; set; }
+
+    public bool IsValid()
+    {
+        if (Cpu is null) return false;
+        if (Dram is null) return false;
+        if (Cooler is null) return false;
+        if (GraphicCard is null) return false;
+        if (Motherboard is null) return false;
+        if (PcCase is null) return false;
+        if (Hdd is null && Ssd is null) return false;
+        return true;
+    }
 }
