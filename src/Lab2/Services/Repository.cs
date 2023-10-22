@@ -55,15 +55,15 @@ public class Repository
     {
         var gpus = new List<BasePart>
         {
-            new GraphicCard("RX 5700XT", 8, 4, 1650, 150, 280, 114),
-            new GraphicCard("RTX 3060Ti", 8, 4, 1410, 200, 247, 120),
+            new GraphicCard("RX 5700XT", 8, 4, 1650, 200, 280, 114),
+            new GraphicCard("RTX 3060Ti", 8, 4, 1410, 220, 247, 120),
         };
         _database.Add(Parts.GraphicCard.ToString(), gpus);
 
         var cpus = new List<BasePart>
         {
-            new Cpu("i7-12700", "LGA1700", false, 190, 21),
-            new Cpu("Ryzen 5 7600", "AM5", true, 220, 23),
+            new Cpu("i7-12700", "LGA1700", false, 190, 21, 120),
+            new Cpu("Ryzen 5 7600", "AM5", true, 220, 21, 150),
         };
         _database.Add(Parts.CPU.ToString(), cpus);
 
@@ -76,8 +76,8 @@ public class Repository
 
         var dram = new List<BasePart>
         {
-            new Dram("Samsung", "Y", 32, 3200, 4, 3, 60),
-            new Dram("Kingston", "Y", 16, 3133, 4, 3, 40),
+            new Dram("Samsung", "Y", 32, 3200, 4, 3, 100),
+            new Dram("Kingston", "Y", 16, 3133, 4, 3, 80),
         };
         _database.Add(Parts.DRAM.ToString(), dram);
 
@@ -105,7 +105,7 @@ public class Repository
         var psus = new List<BasePart>
         {
             new Psu("Cougar", 600),
-            new Psu("AirCool", 550),
+            new Psu("AirCool", 450),
         };
         _database.Add(Parts.PSU.ToString(), psus);
 

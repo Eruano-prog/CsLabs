@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Tests;
 public class TestCases
 {
      [Fact]
-     public void Test1()
+     public void CorrectConfigCase()
      {
           var repository = Repository.TakeInstance();
           repository.Init();
@@ -25,6 +25,10 @@ public class TestCases
                     .WithPSU("Cougar")
                     .Build();
           }
+          catch (FailedToPlaceExeption e)
+          {
+               Assert.Fail($"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
+          }
           catch (ComputerNotReadyException e)
           {
                Assert.Fail(e.Message);
@@ -39,5 +43,42 @@ public class TestCases
           }
 
           Assert.True(true);
+     }
+
+     [Fact]
+     public void NotEnoughPowerCase()
+     {
+          var repository = Repository.TakeInstance();
+          repository.Init();
+
+          try
+          {
+               ComputerConfiguration computer = new ComputerBuilder(repository)
+                    .WithGPU("RTX 3060Ti")
+                    .WithCPU("i7-12700")
+                    .WithCooler("Intel Box")
+                    .WithDram("Samsung")
+                    .WithHDD("Samsung")
+                    .WithMotherboard("Asus")
+                    .WithCase("Zalman")
+                    .WithPSU("AirCool")
+                    .Build();
+          }
+          catch (FailedToPlaceExeption e)
+          {
+               Assert.Fail($"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
+          }
+          catch (ComputerNotReadyException e)
+          {
+               Assert.Fail(e.Message);
+          }
+          catch (NotEnoughPowerException e)
+          {
+               Assert.True(true, $"{e.Message}");
+          }
+          catch (NotEnoughSlotsException e)
+          {
+               Assert.Fail(e.Message);
+          }
      }
 }

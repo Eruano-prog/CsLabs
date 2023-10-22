@@ -114,6 +114,7 @@ public class ComputerBuilder
             {
                 _computer.GraphicCard = gpu;
                 _computer.CurPci++;
+                _computer.CurPower += gpu.Power;
             }
 
             return this;

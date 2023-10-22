@@ -5,13 +5,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class Cpu : BasePart
 {
-    public Cpu(string name, string socket, bool graphic, int tdp, int minBios)
+    public Cpu(string name, string socket, bool graphic, int tdp, int minBios, int power)
         : base(name)
     {
         Socket = socket;
         Graphic = graphic;
         Tdp = tdp;
         MinBios = minBios;
+        Power = power;
     }
 
     public string Socket { get; set; }
