@@ -32,7 +32,10 @@ public class Dram : BasePart
     {
         if (computer is null) return false;
 
-        if (computer.Motherboard is not null && (computer.Motherboard.DdrVersion != Version || computer.Motherboard.DdrFrequency <= Frequency)) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.DdrFrequency <= Frequency) throw new FailedToPlaceExeption("Frequency doesn`t match with motherboard`s");
+
+        if (computer.Motherboard is not null && computer.Motherboard.DdrVersion != Version)
+            throw new FailedToPlaceExeption("Ddr version doen`t match mothrboard`s");
 
         return true;
     }

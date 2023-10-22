@@ -28,9 +28,9 @@ public class Cpu : BasePart
     {
         if (computer is null) return false;
 
-        if (computer.Motherboard is not null && computer.Motherboard.Socket != Socket) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.Socket != Socket) throw new FailedToPlaceExeption("Socket does`t match with motherboard");
 
-        if (computer.Motherboard is not null && computer.Motherboard.Bios.Version < MinBios) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.Bios.Version < MinBios) throw new FailedToPlaceExeption("Bios version does`t match with motherboard");
 
         return true;
     }

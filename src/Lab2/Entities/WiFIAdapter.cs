@@ -22,7 +22,7 @@ public class WiFiAdapter : BasePart
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
         if (computer is null) return false;
-        if (computer.Motherboard is not null && computer.Motherboard.WiFi == true) return false;
+        if (computer.Motherboard is not null && computer.Motherboard.WiFi == true) throw new FailedToPlaceExeption("Motherboard already have wifi support");
         return true;
     }
 }

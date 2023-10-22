@@ -25,7 +25,7 @@ public class PcCase : BasePart
     {
         if (computer is null) return false;
         if (computer.GraphicCard is not null &&
-            (computer.GraphicCard.Lenght > GPULenght || computer.GraphicCard.Width > GPUWidth)) return false;
+            (computer.GraphicCard.Lenght > GPULenght || computer.GraphicCard.Width > GPUWidth)) throw new FailedToPlaceExeption("Installed GPU doesn`t fit chosen case");
         return true;
     }
 }

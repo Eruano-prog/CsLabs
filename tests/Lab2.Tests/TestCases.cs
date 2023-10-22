@@ -29,6 +29,14 @@ public class TestCases
           {
                Assert.Fail(e.Message);
           }
+          catch (NotEnoughPowerException e)
+          {
+               Assert.Fail(e.Message);
+          }
+          catch (NotEnoughSlotsException e)
+          {
+               Assert.Fail(e.Message);
+          }
 
           Assert.True(true);
      }

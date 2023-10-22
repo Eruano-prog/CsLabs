@@ -37,9 +37,13 @@ public class Motherboard : BasePart
     public override bool CanBePlaced(ComputerConfiguration computer)
     {
         if (computer is null) return false;
-        if (computer.Cpu is not null && (Socket != computer.Cpu.Socket || Bios.Version < computer.Cpu.MinBios)) return false;
-        if (computer.Dram is not null && DdrVersion != computer.Dram.Version) return false;
-        if (computer.WiFiAdapter is not null && WiFi) return false;
+        if (computer.Cpu is not null && Bios.Version < computer.Cpu.MinBios)
+            throw new FailedToPlaceExeption("Bios version doen`t match");
+        if (computer.Cpu is not null && Socket != computer.Cpu.Socket)
+            throw new FailedToPlaceExeption("Socket doesn`t match");
+        if (computer.Dram is not null && DdrVersion != computer.Dram.Version)
+            throw new FailedToPlaceExeption("Dram version doesn`t match");
+        if (computer.WiFiAdapter is not null && WiFi) throw new FailedToPlaceExeption("WiFi adapter already placed");
 
         return true;
     }
