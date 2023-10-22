@@ -43,6 +43,11 @@ public class ComputerBuilder
             throw new ComputerNotReadyException($"Missing {check}");
         }
 
+        if (_computer.Cooler?.Tdp < _computer.Cpu?.Tdp)
+        {
+            throw new NotEnoughTdpException("Cooler tdp less than cpu`s");
+        }
+
         return _computer;
     }
 

@@ -21,6 +21,7 @@ public class Repository
         if (instance is null)
         {
             instance = new Repository();
+            instance.Init();
         }
 
         return instance;
@@ -69,7 +70,8 @@ public class Repository
 
         var coolers = new List<BasePart>
         {
-            new CPUCooler("Intel Box", "LGA1700", 200),
+            new CPUCooler("Intel i7-12700 Box", "LGA1700", 200),
+            new CPUCooler("Intel i5-8600 Box", "LGA1700", 150),
             new CPUCooler("Bad AMD", "AM5", 210),
         };
         _database.Add(Parts.CPUCooler.ToString(), coolers);
