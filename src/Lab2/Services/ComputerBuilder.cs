@@ -7,9 +7,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 public class ComputerBuilder
 {
     private ComputerConfiguration _computer;
-    private Repository _datebase;
+    private RepositoryContext _datebase;
 
-    public ComputerBuilder(Repository datebase)
+    public ComputerBuilder(RepositoryContext datebase)
     {
         _datebase = datebase;
         this._computer = new ComputerConfiguration();
@@ -53,7 +53,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithCPU(string name)
     {
-        var cpu = (Cpu)_datebase.GetPart(Parts.CPU, name);
+        Cpu cpu = _datebase.CpuRepository.GetPart(name);
 
         try
         {
@@ -73,7 +73,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithCooler(string name)
     {
-        var cooler = (CPUCooler)_datebase.GetPart(Parts.CPUCooler, name);
+        CPUCooler cooler = _datebase.CoolerRepository.GetPart(name);
 
         try
         {
@@ -92,7 +92,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithDram(string name)
     {
-        var ram = (Dram)_datebase.GetPart(Parts.DRAM, name);
+        Dram ram = _datebase.DramRepository.GetPart(name);
 
         try
         {
@@ -112,7 +112,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithGPU(string name)
     {
-        var gpu = (GraphicCard)_datebase.GetPart(Parts.GraphicCard, name);
+        GraphicCard gpu = _datebase.GpuRepository.GetPart(name);
         try
         {
             if (gpu.CanBePlaced(_computer))
@@ -132,7 +132,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithHDD(string name)
     {
-        var hdd = (Hdd)_datebase.GetPart(Parts.HDD, name);
+        Hdd hdd = _datebase.HddRepository.GetPart(name);
 
         try
         {
@@ -154,7 +154,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithMotherboard(string name)
     {
-        var motherboard = (Motherboard)_datebase.GetPart(Parts.Motherboard, name);
+        Motherboard motherboard = _datebase.MotherboardRepository.GetPart(name);
         try
         {
             if (motherboard.CanBePlaced(_computer))
@@ -172,7 +172,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithCase(string name)
     {
-        var pcCase = (PcCase)_datebase.GetPart(Parts.PCCase, name);
+        PcCase pcCase = _datebase.CaseRepository.GetPart(name);
         if (pcCase.CanBePlaced(_computer))
         {
             _computer.PcCase = pcCase;
@@ -183,7 +183,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithPSU(string name)
     {
-        var psu = (Psu)_datebase.GetPart(Parts.PSU, name);
+        Psu psu = _datebase.PsuRepository.GetPart(name);
         if (psu.CanBePlaced(_computer))
         {
             _computer.Psu = psu;
@@ -194,7 +194,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithSSD(string name)
     {
-        var ssd = (Ssd)_datebase.GetPart(Parts.SSD, name);
+        Ssd ssd = _datebase.SsdRepository.GetPart(name);
         if (ssd.CanBePlaced(_computer))
         {
             _computer.Ssd = ssd;
@@ -205,7 +205,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithWiFi(string name)
     {
-        var wifi = (WiFiAdapter)_datebase.GetPart(Parts.WiFiAdapter, name);
+        WiFiAdapter wifi = _datebase.WifiAdapterRepository.GetPart(name);
         if (wifi.CanBePlaced(_computer))
         {
             _computer.WiFiAdapter = wifi;

@@ -9,7 +9,7 @@ public class TestCases
      [Fact]
      public void CorrectConfigCase()
      {
-          var repository = Repository.TakeInstance();
+          var repository = RepositoryContext.TakeInstance();
 
           try
           {
@@ -51,7 +51,7 @@ public class TestCases
      [Fact]
      public void NotEnoughPowerCase()
      {
-          var repository = Repository.TakeInstance();
+          var repository = RepositoryContext.TakeInstance();
 
           try
           {
@@ -91,7 +91,7 @@ public class TestCases
      [Fact]
      public void NotEnoughTdpCase()
      {
-          var repository = Repository.TakeInstance();
+          var repository = RepositoryContext.TakeInstance();
           try
           {
                ComputerConfiguration computer = new ComputerBuilder(repository)
@@ -130,7 +130,7 @@ public class TestCases
      [Fact]
      public void WrongComponentsCase()
      {
-          var repository = Repository.TakeInstance();
+          var repository = RepositoryContext.TakeInstance();
 
           try
           {
