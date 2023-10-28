@@ -79,7 +79,7 @@ public class ComputerBuilder
 
     public ComputerBuilder WithCooler(string name)
     {
-        CPUCooler cooler = _database.CoolerRepository.GetPart(name);
+        CpuCooler cooler = _database.CoolerRepository.GetPart(name);
 
         try
         {

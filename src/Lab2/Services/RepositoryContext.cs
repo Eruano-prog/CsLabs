@@ -11,7 +11,7 @@ public class RepositoryContext
     private RepositoryContext()
     {
         CpuRepository = new Repository<Cpu>();
-        CoolerRepository = new Repository<CPUCooler>();
+        CoolerRepository = new Repository<CpuCooler>();
         DramRepository = new Repository<Dram>();
         GpuRepository = new Repository<GraphicCard>();
         HddRepository = new Repository<Hdd>();
@@ -25,7 +25,7 @@ public class RepositoryContext
     }
 
     public Repository<Cpu> CpuRepository { get; }
-    public Repository<CPUCooler> CoolerRepository { get; }
+    public Repository<CpuCooler> CoolerRepository { get; }
     public Repository<Dram> DramRepository { get; }
     public Repository<GraphicCard> GpuRepository { get; }
     public Repository<Hdd> HddRepository { get; }
@@ -55,11 +55,11 @@ public class RepositoryContext
         };
         CpuRepository.Init(cpus);
 
-        var coolers = new Collection<CPUCooler>
+        var coolers = new Collection<CpuCooler>
         {
-            new CPUCooler("Intel i7-12700 Box", "LGA1700", 200),
-            new CPUCooler("Intel i5-8600 Box", "LGA1700", 150),
-            new CPUCooler("Bad AMD", "AM5", 210),
+            new CpuCooler("Intel i7-12700 Box", "LGA1700", 200),
+            new CpuCooler("Intel i5-8600 Box", "LGA1700", 150),
+            new CpuCooler("Bad AMD", "AM5", 210),
         };
         CoolerRepository.Init(coolers);
 

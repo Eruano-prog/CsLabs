@@ -3,9 +3,9 @@ using Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
-public class CPUCooler : BasePart
+public class CpuCooler : BasePart
 {
-    public CPUCooler(string name, string socket, int tdp)
+    public CpuCooler(string name, string socket, int tdp)
         : base(name)
     {
         Socket = socket;
