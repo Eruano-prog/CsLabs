@@ -11,41 +11,21 @@ public class TestCases
      {
           var repository = RepositoryContext.TakeInstance();
 
-          try
-          {
-               ComputerConfiguration computer = new ComputerBuilder(repository)
-                    .WithGPU("RTX 3060Ti")
-                    .WithCPU("i7-12700")
-                    .WithCooler("Intel i7-12700 Box")
-                    .WithDram("Samsung")
-                    .WithHDD("Samsung")
-                    .WithMotherboard("Asus")
-                    .WithCase("Zalman")
-                    .WithPSU("Cougar")
-                    .Build();
-          }
-          catch (FailedToPlaceExeption e)
-          {
-               Assert.Fail($"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
-          }
-          catch (ComputerNotReadyException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughPowerException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughSlotsException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughTdpException e)
-          {
-               Assert.Fail(e.Message);
-          }
+          System.Exception? ex = Record.Exception(() =>
+               {
+                    ComputerConfiguration computer = new ComputerBuilder(repository)
+                         .WithGPU("RTX 3060Ti")
+                         .WithCPU("i7-12700")
+                         .WithCooler("Intel i7-12700 Box")
+                         .WithDram("Samsung")
+                         .WithHDD("Samsung")
+                         .WithMotherboard("Asus")
+                         .WithCase("Zalman")
+                         .WithPSU("Cougar")
+                         .Build();
+               });
 
-          Assert.True(true);
+          Assert.Null(ex);
      }
 
      [Fact]
@@ -53,7 +33,7 @@ public class TestCases
      {
           var repository = RepositoryContext.TakeInstance();
 
-          try
+          Assert.Throws<NotEnoughPowerException>(() =>
           {
                ComputerConfiguration computer = new ComputerBuilder(repository)
                     .WithGPU("RTX 3060Ti")
@@ -65,34 +45,15 @@ public class TestCases
                     .WithCase("Zalman")
                     .WithPSU("AirCool")
                     .Build();
-          }
-          catch (FailedToPlaceExeption e)
-          {
-               Assert.Fail($"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
-          }
-          catch (ComputerNotReadyException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughPowerException e)
-          {
-               Assert.True(true, $"{e.Message}");
-          }
-          catch (NotEnoughSlotsException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughTdpException e)
-          {
-               Assert.Fail(e.Message);
-          }
+          });
      }
 
      [Fact]
      public void NotEnoughTdpCase()
      {
           var repository = RepositoryContext.TakeInstance();
-          try
+
+          Assert.Throws<NotEnoughTdpException>(() =>
           {
                ComputerConfiguration computer = new ComputerBuilder(repository)
                     .WithGPU("RTX 3060Ti")
@@ -104,27 +65,7 @@ public class TestCases
                     .WithCase("Zalman")
                     .WithPSU("Cougar")
                     .Build();
-          }
-          catch (FailedToPlaceExeption e)
-          {
-               Assert.Fail($"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
-          }
-          catch (ComputerNotReadyException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughPowerException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughSlotsException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughTdpException e)
-          {
-               Assert.True(true, $"{e.Message}");
-          }
+          });
      }
 
      [Fact]
@@ -132,7 +73,7 @@ public class TestCases
      {
           var repository = RepositoryContext.TakeInstance();
 
-          try
+          FailedToPlaceExeption ex = Assert.Throws<FailedToPlaceExeption>(() =>
           {
                ComputerConfiguration computer = new ComputerBuilder(repository)
                     .WithGPU("RTX 3060Ti")
@@ -144,26 +85,8 @@ public class TestCases
                     .WithCase("Zalman")
                     .WithPSU("Cougar")
                     .Build();
-          }
-          catch (FailedToPlaceExeption e)
-          {
-               Assert.True(true, $"Operation failed ({e.Message}) because: {e.InnerException?.Message}");
-          }
-          catch (ComputerNotReadyException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughPowerException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughSlotsException e)
-          {
-               Assert.Fail(e.Message);
-          }
-          catch (NotEnoughTdpException e)
-          {
-               Assert.Fail(e.Message);
-          }
+          });
+
+          Xunit.Assert.Equal("Socket doesn`t match", ex.InnerException?.Message);
      }
 }
