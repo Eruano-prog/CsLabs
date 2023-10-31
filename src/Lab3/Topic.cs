@@ -1,14 +1,15 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab3.MessageDir;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.Addressee;
+using Itmo.ObjectOrientedProgramming.Lab3.MessageDir;
 using Itmo.ObjectOrientedProgramming.Lab3.Recievers;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class Topic : IReciever
 {
-    private readonly BaseReciever _reciever;
-    public Topic(string title, BaseReciever reciever)
+    private readonly IAddressee _addressee;
+    public Topic(string title, IAddressee addressee)
     {
-        _reciever = reciever;
+        _addressee = addressee;
         Title = title;
     }
 
@@ -16,6 +17,6 @@ public class Topic : IReciever
 
     public void Recieve(Message message)
     {
-        throw new System.NotImplementedException();
+        _addressee.Process(message);
     }
 }

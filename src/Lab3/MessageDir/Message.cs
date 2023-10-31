@@ -2,13 +2,17 @@
 
 public class Message : IPrintable, IFiltarable
 {
-    public string Print()
+    private Priorities priority;
+
+    public Message(string text, Priorities priority = Priorities.Open)
     {
-        throw new System.NotImplementedException();
+        this.priority = priority;
+        Text = text;
     }
 
-    public bool Filter()
-    {
-        throw new System.NotImplementedException();
-    }
+    public string Text { get; private set; }
+
+    public string Print() => Text;
+
+    public bool Filter(Priorities priority) => this.priority < priority;
 }

@@ -2,5 +2,5 @@
 
 public interface IFiltarable
 {
-    public bool Filter();
+    public bool Filter(Priorities priority);
 }
