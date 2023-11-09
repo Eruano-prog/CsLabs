@@ -72,6 +72,20 @@ public class TestCases
     [Fact]
     public void Test5()
     {
+        var user = new UserReciever();
+        Logger logger = Substitute.For<Logger>();
+        var adressee = new BaseAddressee(user, logger, Priorities.Secret);
+        var topic = new Topic("TestTopic", adressee);
+
+        var message = new Message("test", Priorities.Secret);
+        topic.Recieve(message);
+
+        logger.Received(1).WriteLog(message, true);
+    }
+
+    [Fact]
+    public void Test6()
+    {
         MessangerReciever? user = Substitute.For<MessangerReciever>();
         ILogger logger = Logger.TakeInstance();
         var adressee = new BaseAddressee(user, logger);
