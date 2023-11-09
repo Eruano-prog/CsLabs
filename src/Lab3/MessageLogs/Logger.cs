@@ -7,8 +7,9 @@ public class Logger : ILogger
 {
     private static Logger? _instance;
 
-    private Logger()
-    { }
+    public Logger()
+    {
+    }
 
     public static ILogger TakeInstance()
     {
@@ -18,6 +19,11 @@ public class Logger : ILogger
         }
 
         return _instance;
+    }
+
+    public void WriteLog(string message)
+    {
+        Console.WriteLine(message);
     }
 
     public void WriteLog(Message message, bool result)
