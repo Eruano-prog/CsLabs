@@ -1,5 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab3.Logs;
-using Itmo.ObjectOrientedProgramming.Lab3.MessageDir;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.MessageDir;
+using Itmo.ObjectOrientedProgramming.Lab3.MessageLogs;
 using Itmo.ObjectOrientedProgramming.Lab3.Recievers;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Addressee;
@@ -10,10 +10,10 @@ public class BaseAddressee : IAddressee
     private Priorities _priority;
     private ILogger _logger;
 
-    public BaseAddressee(IReciever reciever, Priorities priority = Priorities.TopSecret)
+    public BaseAddressee(IReciever reciever, ILogger logger, Priorities priority = Priorities.TopSecret)
     {
         _reciever = reciever;
-        _logger = Logger.TakeInstance();
+        _logger = logger;
         _priority = priority;
     }
 
@@ -21,7 +21,7 @@ public class BaseAddressee : IAddressee
     {
         if (message is null) return;
 
-        if (message.Filter(_priority))
+        if (Filter(message))
         {
             _reciever.Recieve(message);
             _logger.WriteLog(message, true);
@@ -31,4 +31,6 @@ public class BaseAddressee : IAddressee
             _logger.WriteLog(message, false);
         }
     }
+
+    private bool Filter(Message message) => message.Priority <= _priority;
 }

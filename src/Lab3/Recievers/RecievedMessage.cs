@@ -1,3 +1,5 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab3.Recievers;
+﻿using Itmo.ObjectOrientedProgramming.Lab3.MessageDir;
 
-public record RecievedMessage();
+namespace Itmo.ObjectOrientedProgramming.Lab3.Recievers;
+
+public record RecievedMessage(Message Message, bool Read);
