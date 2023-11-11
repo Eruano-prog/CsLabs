@@ -4,13 +4,13 @@ using Itmo.ObjectOrientedProgramming.Lab3.Recievers;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Addressee;
 
-public class BaseAddressee : IAddressee
+public class AddresseeProxy : IAddressee
 {
     private IReciever _reciever;
     private Priorities _priority;
     private ILogger _logger;
 
-    public BaseAddressee(IReciever reciever, ILogger logger, Priorities priority = Priorities.TopSecret)
+    public AddresseeProxy(IReciever reciever, ILogger logger, Priorities priority = Priorities.TopSecret)
     {
         _reciever = reciever;
         _logger = logger;

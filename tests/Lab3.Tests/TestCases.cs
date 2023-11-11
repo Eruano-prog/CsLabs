@@ -14,7 +14,7 @@ public class TestCases
     public void Test1()
     {
         UserReciever user = Substitute.For<UserReciever>();
-        var adressee = new BaseAddressee(user, Logger.TakeInstance());
+        var adressee = new AddresseeProxy(user, Logger.TakeInstance());
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.TopSecret);
@@ -28,7 +28,7 @@ public class TestCases
     public void Test2()
     {
         var user = new UserReciever();
-        var adressee = new BaseAddressee(user, Logger.TakeInstance());
+        var adressee = new AddresseeProxy(user, Logger.TakeInstance());
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.TopSecret);
@@ -42,7 +42,7 @@ public class TestCases
     public void Test3()
     {
         var user = new UserReciever();
-        var adressee = new BaseAddressee(user, Logger.TakeInstance());
+        var adressee = new AddresseeProxy(user, Logger.TakeInstance());
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.TopSecret);
@@ -60,7 +60,7 @@ public class TestCases
     {
         UserReciever user = Substitute.For<UserReciever>();
         ILogger logger = Logger.TakeInstance();
-        var adressee = new BaseAddressee(user, logger, Priorities.Open);
+        var adressee = new AddresseeProxy(user, logger, Priorities.Open);
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.Secret);
@@ -74,7 +74,7 @@ public class TestCases
     {
         var user = new UserReciever();
         Logger logger = Substitute.For<Logger>();
-        var adressee = new BaseAddressee(user, logger, Priorities.Secret);
+        var adressee = new AddresseeProxy(user, logger, Priorities.Secret);
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.Secret);
@@ -88,7 +88,7 @@ public class TestCases
     {
         MessangerReciever? user = Substitute.For<MessangerReciever>();
         ILogger logger = Logger.TakeInstance();
-        var adressee = new BaseAddressee(user, logger);
+        var adressee = new AddresseeProxy(user, logger);
         var topic = new Topic("TestTopic", adressee);
 
         var message = new Message("test", Priorities.Secret);
