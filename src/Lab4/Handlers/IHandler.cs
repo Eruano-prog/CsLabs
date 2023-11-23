@@ -1,8 +1,9 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Iterator;
+﻿using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Handlers;
 
 public interface IHandler
 {
-    public static abstract void Handle(Command iterator);
+    public void Handle(CommandContext context);
+    public IHandler AddNext(IHandler handler);
 }
