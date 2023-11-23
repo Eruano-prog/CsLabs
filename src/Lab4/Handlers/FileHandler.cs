@@ -12,8 +12,8 @@ public class FileHandler : BaseHandler
         {
             context.Iterator.MoveNext();
 
-            IHandler fileChain = new FileShowHandler()
-                .AddNext(new FileMoveHandler())
+            IHandler fileChain = new FileShowHandler();
+            fileChain.AddNext(new FileMoveHandler())
                 .AddNext(new FileCopyHandler())
                 .AddNext(new FileDeleteHandler())
                 .AddNext(new FileDeleteHandler());

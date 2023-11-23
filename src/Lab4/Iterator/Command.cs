@@ -2,7 +2,6 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Iterator;
 
-// TODO Починить случай, когда в адрессе есть пробел
 public class Command : IEnumerator
 {
     private string _string;
@@ -20,9 +19,18 @@ public class Command : IEnumerator
         {
             string current = string.Empty;
             int cur_index = _index;
-            while (cur_index < _string.Length && _string[cur_index] != ' ')
+            bool quotation = false;
+            while (cur_index < _string.Length && (quotation || _string[cur_index] != ' '))
             {
-                current += _string[cur_index];
+                if (_string[cur_index] == '\'')
+                {
+                    quotation = !quotation;
+                }
+                else
+                {
+                    current += _string[cur_index];
+                }
+
                 cur_index++;
             }
 

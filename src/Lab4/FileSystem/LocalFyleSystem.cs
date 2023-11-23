@@ -9,7 +9,16 @@ public class LocalFyleSystem : IFileSystem
     private string? _path;
     public IFileSystem Connect(string path)
     {
-        _path = path;
+        if (Directory.Exists(path))
+        {
+            _path = path;
+            Console.WriteLine("Success");
+        }
+        else
+        {
+            Console.WriteLine("Invalid path");
+        }
+
         return this;
     }
 
@@ -33,6 +42,7 @@ public class LocalFyleSystem : IFileSystem
             if (Directory.Exists(curPath))
             {
                 _path = curPath;
+                Console.WriteLine($"Directory changed to {_path}");
             }
             else
             {
@@ -144,7 +154,7 @@ public class LocalFyleSystem : IFileSystem
     {
         if (path is null || path.Length < 2) return false;
 
-        return true;
+        return path[1] == ':';
     }
 
     private string CreateAbsolutePath(string path)
