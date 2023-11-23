@@ -5,7 +5,7 @@ public interface IFileSystem
     public IFileSystem Connect(string path);
     public IFileSystem Disconnect();
     public void ChangeDirectory(string path);
-    public void ListFiles();
+    public void ListFiles(int depth, int curDepth);
     public void OpenFile(string filename);
     public void MoveFile(string firstPath, string secondPath);
     public void CopyFile(string firstPath, string secondPath);
