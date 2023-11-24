@@ -34,6 +34,7 @@ public class LocalFyleSystem : IFileSystem
         if (IsAbsolutPath(path))
         {
             _path = path;
+            Console.WriteLine($"Directory changed to {_path}");
         }
         else
         {
@@ -51,26 +52,27 @@ public class LocalFyleSystem : IFileSystem
         }
     }
 
-    public void ListFiles(int depth, int curDepth)
+    public void ListFiles(int depth, int curDepth, string? path)
     {
-        if (_path is null)
+        if (path is null) path = _path;
+        if (path is null)
         {
             Console.WriteLine("Connect first");
             return;
         }
 
-        if (!Directory.Exists(_path))
+        if (!Directory.Exists(path))
         {
             Console.WriteLine("Invalid Path");
         }
 
-        foreach (string directory in Directory.GetDirectories(_path))
+        foreach (string? directory in Directory.GetDirectories(path))
         {
             string shift = string.Concat(Enumerable.Repeat('\t', curDepth));
             Console.WriteLine(shift + directory);
             if (depth != curDepth + 1)
             {
-                ListFiles(depth, curDepth + 1);
+                ListFiles(depth, curDepth + 1, directory);
             }
         }
     }
@@ -91,6 +93,7 @@ public class LocalFyleSystem : IFileSystem
         if (!File.Exists(from) || File.Exists(to))
         {
             Console.WriteLine("Invalid path");
+            return;
         }
 
         File.Move(from, to + '\\' + Path.GetFileName(from));
@@ -114,8 +117,6 @@ public class LocalFyleSystem : IFileSystem
     public void DeleteFile(string path)
     {
         string curFile = CreateAbsolutePath(path);
-
-        Console.WriteLine(curFile);
 
         if (File.Exists(curFile))
         {
@@ -143,9 +144,10 @@ public class LocalFyleSystem : IFileSystem
             i--;
         }
 
-        string to = string.Concat(from.AsSpan(0, i), name);
+        string to = string.Concat(from.AsSpan(0, i), '\\' + name);
 
-        if (!File.Exists(from) || !File.Exists(to))
+        Console.WriteLine(to);
+        if (!File.Exists(from))
         {
             Console.WriteLine("Invalid path");
         }

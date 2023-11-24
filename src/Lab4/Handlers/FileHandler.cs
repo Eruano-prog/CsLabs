@@ -15,7 +15,7 @@ public class FileHandler : BaseHandler
             IHandler fileChain = new FileShowHandler();
             fileChain.AddNext(new FileMoveHandler())
                 .AddNext(new FileCopyHandler())
-                .AddNext(new FileDeleteHandler())
+                .AddNext(new FileRenameHandler())
                 .AddNext(new FileDeleteHandler());
 
             fileChain.Handle(context);

@@ -33,4 +33,19 @@ public class Test
 
         fileSystem.Received(1).ChangeDirectory("Git");
     }
+
+    [Fact]
+    public void Test2()
+    {
+        var command = new Command("connect 'C:\\Program Files' -d 95");
+
+        Assert.Equal("connect", command.Current);
+        command.MoveNext();
+        Assert.Equal("C:\\Program Files", command.Current);
+        command.MoveNext();
+        Assert.Equal("-d", command.Current);
+        Assert.True(command.MoveNext());
+        Assert.Equal("95", command.Current);
+        Assert.False(command.MoveNext());
+    }
 }

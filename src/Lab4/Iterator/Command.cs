@@ -60,4 +60,9 @@ public class Command : IEnumerator
     {
         _index = 0;
     }
+
+    public Command Clone()
+    {
+        return (Command)MemberwiseClone();
+    }
 }
