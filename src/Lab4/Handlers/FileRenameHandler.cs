@@ -8,7 +8,7 @@ public class FileRenameHandler : BaseHandler
     public override void Handle(CommandContext context)
     {
         if (context is null || context.Iterator is null) return;
-        if (string.Equals((string)context.Iterator.Current, "disconnect", StringComparison.Ordinal))
+        if (string.Equals((string)context.Iterator.Current, "rename", StringComparison.Ordinal))
         {
             context.FileSystem.Disconnect();
         }

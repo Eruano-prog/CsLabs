@@ -8,9 +8,13 @@ public class FileCopyHandler : BaseHandler
     public override void Handle(CommandContext context)
     {
         if (context is null || context.Iterator is null) return;
-        if (string.Equals((string)context.Iterator.Current, "disconnect", StringComparison.Ordinal))
+        if (string.Equals((string)context.Iterator.Current, "copy", StringComparison.Ordinal))
         {
-            context.FileSystem.Disconnect();
+            context.Iterator.MoveNext();
+            string firstPath = (string)context.Iterator.Current;
+            context.Iterator.MoveNext();
+            string secondpath = (string)context.Iterator.Current;
+            context.FileSystem.CopyFile(firstPath, secondpath);
         }
         else
         {

@@ -40,8 +40,14 @@ public class Command : IEnumerator
 
     public bool MoveNext()
     {
-        while (_index < _string.Length && _string[_index] != ' ')
+        bool quotation = false;
+        while (_index < _string.Length && (quotation || _string[_index] != ' '))
         {
+            if (_string[_index] == '\'')
+            {
+                quotation = !quotation;
+            }
+
             _index++;
         }
 

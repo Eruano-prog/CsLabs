@@ -10,7 +10,7 @@ public class TreeListHandler : BaseHandler
         if (context is null || context.Iterator is null) return;
         if (string.Equals((string)context.Iterator.Current, "list", StringComparison.Ordinal))
         {
-            context.FileSystem.ListFiles(2, 0);
+            context.FileSystem.ListFiles(1, 0);
         }
         else
         {

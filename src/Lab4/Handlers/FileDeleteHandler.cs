@@ -8,9 +8,11 @@ public class FileDeleteHandler : BaseHandler
     public override void Handle(CommandContext context)
     {
         if (context is null || context.Iterator is null) return;
-        if (string.Equals((string)context.Iterator.Current, "disconnect", StringComparison.Ordinal))
+        if (string.Equals((string)context.Iterator.Current, "delete", StringComparison.Ordinal))
         {
-            context.FileSystem.Disconnect();
+            context.Iterator.MoveNext();
+            string path = (string)context.Iterator.Current;
+            context.FileSystem.DeleteFile(path);
         }
         else
         {

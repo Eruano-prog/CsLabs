@@ -88,12 +88,12 @@ public class LocalFyleSystem : IFileSystem
 
         string to = CreateAbsolutePath(secondPath);
 
-        if (!File.Exists(from) || !File.Exists(to))
+        if (!File.Exists(from) || File.Exists(to))
         {
             Console.WriteLine("Invalid path");
         }
 
-        File.Move(from, to);
+        File.Move(from, to + '\\' + Path.GetFileName(from));
     }
 
     public void CopyFile(string firstPath, string secondPath)
@@ -102,17 +102,20 @@ public class LocalFyleSystem : IFileSystem
 
         string to = CreateAbsolutePath(secondPath);
 
-        if (!File.Exists(from) || !File.Exists(to))
+        if (!File.Exists(from) || File.Exists(to))
         {
             Console.WriteLine("Invalid path");
+            return;
         }
 
-        File.Copy(from, to);
+        File.Copy(from, to + '\\' + Path.GetFileName(from));
     }
 
     public void DeleteFile(string path)
     {
         string curFile = CreateAbsolutePath(path);
+
+        Console.WriteLine(curFile);
 
         if (File.Exists(curFile))
         {
