@@ -11,8 +11,8 @@ public class FileShowHandler : BaseHandler
         if (string.Equals((string)context.Iterator.Current, "show", StringComparison.Ordinal))
         {
             context.Iterator.MoveNext();
-            string path = (string)context.Iterator.Current;
-            context.FileSystem.OpenFile(path);
+            var flagsHandler = new FileShowFlagsHandler();
+            flagsHandler.Execute(context);
         }
         else
         {
