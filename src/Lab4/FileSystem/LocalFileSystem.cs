@@ -61,6 +61,8 @@ public class LocalFileSystem : IFileSystem
             return;
         }
 
+        Console.WriteLine(depth);
+
         if (!Directory.Exists(path))
         {
             Console.WriteLine("Invalid Path");

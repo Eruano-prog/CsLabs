@@ -1,37 +1,22 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Iterator;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Handlers;
 
 public class ListFlagsHandler
 {
-    private int _depth = 1;
+    private Dictionary<string, string> _flags = new Dictionary<string, string>()
+    {
+        { "-d", "1" },
+    };
 
     public void Execute(CommandContext context)
     {
         if (context is null) return;
 
-        Command iterator = context.Iterator.Clone();
-        CheckForDepth(iterator);
+        context.Iterator.GetFlags(_flags);
 
-        context.FileSystem.ListFiles(_depth, 0, null);
-    }
-
-    private void CheckForDepth(Command iterator)
-    {
-        while (iterator.MoveNext())
-        {
-            if ((string)iterator.Current == "-d")
-            {
-                iterator.MoveNext();
-                string res = (string)iterator.Current;
-
-                bool success = int.TryParse(res, out _depth);
-                if (!success)
-                {
-                    _depth = 1;
-                }
-            }
-        }
+        context.FileSystem.ListFiles(int.Parse(_flags["-d"], NumberFormatInfo.CurrentInfo), 0, null);
     }
 }

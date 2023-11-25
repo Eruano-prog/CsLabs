@@ -1,11 +1,14 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Iterator;
+﻿using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Handlers;
 
 public class FileShowFlagsHandler
 {
-    private string _mode = "console";
+    private Dictionary<string, string> flags = new Dictionary<string, string>()
+    {
+        { "-m", "console" },
+    };
 
     public void Execute(CommandContext context)
     {
@@ -13,22 +16,8 @@ public class FileShowFlagsHandler
         string path = (string)context.Iterator.Current;
         context.Iterator.MoveNext();
 
-        Command iterator = context.Iterator.Clone();
-        CheckForMode(iterator);
+        context.Iterator.GetFlags(flags);
 
-        context.FileSystem.OpenFile(path, _mode);
-    }
-
-    private void CheckForMode(Command iterator)
-    {
-        while (iterator.MoveNext())
-        {
-            if ((string)iterator.Current == "-m")
-            {
-                iterator.MoveNext();
-                _mode = (string)iterator.Current;
-                iterator.MoveNext();
-            }
-        }
+        context.FileSystem.OpenFile(path, flags["-m"]);
     }
 }

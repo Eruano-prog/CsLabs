@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Iterator;
 
@@ -61,8 +62,17 @@ public class Command : IEnumerator
         _index = 0;
     }
 
-    public Command Clone()
+    public void GetFlags(Dictionary<string, string> flags)
     {
-        return (Command)MemberwiseClone();
+        if (flags is null) return;
+
+        while (MoveNext())
+        {
+            string first = (string)Current;
+            MoveNext();
+            string second = (string)Current;
+
+            flags[first] = second;
+        }
     }
 }
