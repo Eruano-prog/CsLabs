@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab4.FileSystem.Handlers;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.FileSystem;
 
@@ -61,8 +62,6 @@ public class LocalFileSystem : IFileSystem
             return;
         }
 
-        Console.WriteLine(depth);
-
         if (!Directory.Exists(path))
         {
             Console.WriteLine("Invalid Path");
@@ -88,9 +87,10 @@ public class LocalFileSystem : IFileSystem
 
     public void OpenFile(string filename, string mode = "console")
     {
-        string fileContains = File.ReadAllText(_path + '\\' + filename);
+        string pathname = _path + '\\' + filename;
 
-        if (mode == "console") Console.WriteLine(fileContains);
+        var chain = new ConsoleModeHandler();
+        chain.Handle(pathname, mode);
     }
 
     public void MoveFile(string firstPath, string secondPath)
