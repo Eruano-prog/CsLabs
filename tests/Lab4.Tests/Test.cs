@@ -62,4 +62,22 @@ public class Test
 
         fileSystem.Received(1).CopyFile("Test1", "Test2");
     }
+
+    [Fact]
+    public void ListTest()
+    {
+        LocalFileSystem fileSystem = Substitute.For<LocalFileSystem>();
+
+        IHandler chain = new ConnectHandler()
+            .AddNext(new DisconnectHandler())
+            .AddNext(new TreeHandler())
+            .AddNext(new FileHandler());
+
+        var command = new Command("tree list -d 3");
+        var context = new CommandContext(command, fileSystem);
+
+        chain.Handle(context);
+
+        fileSystem.Received(1).ListFiles(3, 0, null);
+    }
 }
