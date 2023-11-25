@@ -16,7 +16,7 @@ public class FileShowFlagsHandler
         Command iterator = context.Iterator.Clone();
         CheckForMode(iterator);
 
-        context.FileSystem.OpenFile(path);
+        context.FileSystem.OpenFile(path, _mode);
     }
 
     private void CheckForMode(Command iterator)
@@ -27,6 +27,7 @@ public class FileShowFlagsHandler
             {
                 iterator.MoveNext();
                 _mode = (string)iterator.Current;
+                iterator.MoveNext();
             }
         }
     }

@@ -84,11 +84,11 @@ public class LocalFileSystem : IFileSystem
         }
     }
 
-    public void OpenFile(string filename)
+    public void OpenFile(string filename, string mode = "console")
     {
         string fileContains = File.ReadAllText(_path + '\\' + filename);
 
-        Console.WriteLine(fileContains);
+        if (mode == "console") Console.WriteLine(fileContains);
     }
 
     public void MoveFile(string firstPath, string secondPath)
