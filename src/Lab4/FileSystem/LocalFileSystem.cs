@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.FileSystem;
 
-public class LocalFyleSystem : IFileSystem
+public class LocalFileSystem : IFileSystem
 {
     private string? _path;
     public IFileSystem Connect(string path)

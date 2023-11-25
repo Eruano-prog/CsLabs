@@ -10,10 +10,10 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Tests;
 public class Test
 {
     [Fact]
-    public void Test1()
+    public void ConnectTest()
     {
-        var command = new Command("C:\\Program Files'");
-        LocalFyleSystem fileSystem = Substitute.For<LocalFyleSystem>();
+        var command = new Command("connect 'C:\\Program Files'");
+        LocalFileSystem fileSystem = Substitute.For<LocalFileSystem>();
 
         var context = new CommandContext(command, fileSystem);
 
@@ -25,9 +25,20 @@ public class Test
         chain.Handle(context);
 
         fileSystem.Received(1).Connect("C:\\Program Files");
+    }
 
-        command = new Command("tree goto Git");
-        context = new CommandContext(command, fileSystem);
+    [Fact]
+    public void GotoTest()
+    {
+        LocalFileSystem fileSystem = Substitute.For<LocalFileSystem>();
+
+        IHandler chain = new ConnectHandler()
+            .AddNext(new DisconnectHandler())
+            .AddNext(new TreeHandler())
+            .AddNext(new FileHandler());
+
+        var command = new Command("tree goto Git");
+        var context = new CommandContext(command, fileSystem);
 
         chain.Handle(context);
 
@@ -35,17 +46,20 @@ public class Test
     }
 
     [Fact]
-    public void Test2()
+    public void CopyTest()
     {
-        var command = new Command("connect 'C:\\Program Files' -d 95");
+        LocalFileSystem fileSystem = Substitute.For<LocalFileSystem>();
 
-        Assert.Equal("connect", command.Current);
-        command.MoveNext();
-        Assert.Equal("C:\\Program Files", command.Current);
-        command.MoveNext();
-        Assert.Equal("-d", command.Current);
-        Assert.True(command.MoveNext());
-        Assert.Equal("95", command.Current);
-        Assert.False(command.MoveNext());
+        IHandler chain = new ConnectHandler()
+            .AddNext(new DisconnectHandler())
+            .AddNext(new TreeHandler())
+            .AddNext(new FileHandler());
+
+        var command = new Command("file copy Test1 Test2");
+        var context = new CommandContext(command, fileSystem);
+
+        chain.Handle(context);
+
+        fileSystem.Received(1).CopyFile("Test1", "Test2");
     }
 }
