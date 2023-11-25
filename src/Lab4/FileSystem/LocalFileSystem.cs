@@ -64,15 +64,22 @@ public class LocalFileSystem : IFileSystem
         if (!Directory.Exists(path))
         {
             Console.WriteLine("Invalid Path");
+            return;
         }
 
         foreach (string? directory in Directory.GetDirectories(path))
         {
             string shift = string.Concat(Enumerable.Repeat('\t', curDepth));
             Console.WriteLine(shift + directory);
+
             if (depth != curDepth + 1)
             {
                 ListFiles(depth, curDepth + 1, directory);
+            }
+
+            foreach (string file in Directory.GetFiles(path))
+            {
+                Console.WriteLine(shift + file);
             }
         }
     }
