@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace Itmo.ObjectOrientedProgramming.Lab4.FileSystem.Handlers;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab4.FileSystem.Handlers;
 
 public class ConsoleModeHandler : BaseShowHandler
 {
@@ -9,12 +6,9 @@ public class ConsoleModeHandler : BaseShowHandler
     {
         if (mode == "console")
         {
-            string fileContains = File.ReadAllText(filename);
-            Console.WriteLine(fileContains);
+            this.AddNext(new ConsoleWriteHandler());
         }
-        else
-        {
-            base.Handle(filename, mode);
-        }
+
+        base.Handle(filename, mode);
     }
 }
