@@ -14,9 +14,13 @@ public class FileShowFlagsHandler
     {
         if (context is null) return;
         string path = (string)context.Iterator.Current;
-        context.Iterator.MoveNext();
 
-        context.Iterator.GetFlags(flags);
+        var chain = new FileShowModeHandler();
+
+        while (context.Iterator.MoveNext())
+        {
+            chain.Handle(context, flags);
+        }
 
         context.FileSystem.OpenFile(path, flags["-m"]);
     }
