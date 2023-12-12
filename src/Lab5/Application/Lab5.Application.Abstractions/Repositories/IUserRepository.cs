@@ -1,6 +1,6 @@
-﻿using Lab5.Application.Models.Users;
+﻿using Lab5.Application.Users.Models.Users;
 
-namespace Lab5.Application.Abstractions.Repositories;
+namespace Lab5.Application.Users.Abstractions.Repositories;
 
 public interface IUserRepository
 {
