@@ -1,5 +1,5 @@
 ﻿using Lab5.Application.Abstractions.Repositories;
-using Lab5.Application.Users.Contracts.Users;
+using Lab5.Application.Contracts.Users;
 using Lab5.Application.Users.Models.Accounts;
 using Lab5.Application.Users.Models.Users;
 

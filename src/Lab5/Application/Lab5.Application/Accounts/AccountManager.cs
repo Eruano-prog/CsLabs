@@ -1,24 +1,32 @@
-﻿using Lab5.Application.Users.Contracts.Accounts;
+﻿using Lab5.Application.Abstractions.Repositories;
+using Lab5.Application.Users.Contracts.Accounts;
 using Lab5.Application.Users.Models.Accounts;
 
 namespace Lab5.Application.Accounts;
 
 public class AccountManager : IAccountManager
 {
-    public Account? Account { get; }
-
-    public void SetAccount(string user, int id)
+    private IAccountRepository _accountRepository;
+    private Account _account;
+    public AccountManager(Account account, IAccountRepository accountRepository)
     {
-        throw new NotImplementedException();
+        _account = account;
+        _accountRepository = accountRepository;
     }
 
     public long GetAccountBalance()
     {
-        throw new NotImplementedException();
+        return _account.Balance;
     }
 
     public void ChangeBalance(long cash)
     {
-        throw new NotImplementedException();
+        _account.Balance += cash;
+        SaveChanges();
+    }
+
+    private void SaveChanges()
+    {
+        _accountRepository.SaveAccount(_account);
     }
 }
