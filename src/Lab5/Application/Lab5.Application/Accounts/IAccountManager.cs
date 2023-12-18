@@ -1,4 +1,4 @@
-﻿namespace Lab5.Application.Users.Contracts.Accounts;
+﻿namespace Lab5.Application.Accounts;
 
 public interface IAccountManager
 {
