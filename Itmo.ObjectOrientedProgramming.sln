@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.Application.Contracts"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.Application.Abstractions", "src\Lab5\Application\Lab5.Application.Abstractions\Lab5.Application.Abstractions.csproj", "{C0B47265-5FE2-47B6-83BC-16689EB855EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5.Infrastructure.Database", "src\Lab5\Lab5.Infrastructure.Database\Lab5.Infrastructure.Database.csproj", "{3F39B133-86D7-4401-B036-7143C033ECC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,7 @@ Global
 		{3BFCD58B-55C7-4E1B-9F36-30A084ED94E0} = {680FECCA-A737-49D6-AC7A-60F17B62CBC7}
 		{D0277CB2-BAE3-4BE5-A3FD-18D4B247C23E} = {680FECCA-A737-49D6-AC7A-60F17B62CBC7}
 		{C0B47265-5FE2-47B6-83BC-16689EB855EE} = {680FECCA-A737-49D6-AC7A-60F17B62CBC7}
+		{3F39B133-86D7-4401-B036-7143C033ECC1} = {F2B10B06-310D-4AB5-B7A7-90D81FA1D0F2}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EABA4888-E6C1-4ACC-856E-FBD34CEA3EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -122,5 +125,9 @@ Global
 		{C0B47265-5FE2-47B6-83BC-16689EB855EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0B47265-5FE2-47B6-83BC-16689EB855EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0B47265-5FE2-47B6-83BC-16689EB855EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F39B133-86D7-4401-B036-7143C033ECC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F39B133-86D7-4401-B036-7143C033ECC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F39B133-86D7-4401-B036-7143C033ECC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F39B133-86D7-4401-B036-7143C033ECC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
