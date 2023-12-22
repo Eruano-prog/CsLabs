@@ -25,6 +25,8 @@ public class UserRepository : IUserRepository
         cmd.Parameters.AddWithValue("name", name);
 
         using NpgsqlDataReader reader = cmd.ExecuteReader();
+        reader.Read();
+
         int id = reader.GetInt32(0);
         string username = reader.GetString(1);
         UserRole role = reader.GetBoolean(2) ? UserRole.Admin : UserRole.Common;

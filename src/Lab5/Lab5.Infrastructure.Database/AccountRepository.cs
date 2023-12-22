@@ -24,6 +24,7 @@ public class AccountRepository : IAccountRepository
             connection);
         cmd.Parameters.AddWithValue("id", id);
         using NpgsqlDataReader reader = cmd.ExecuteReader();
+        reader.Read();
 
         int ids = reader.GetInt32(0);
         string host = reader.GetString(1);
@@ -37,11 +38,13 @@ public class AccountRepository : IAccountRepository
         var result = new List<Account>();
 
         using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
         using var cmd = new NpgsqlCommand(
             """
             SELECT *
             FROM "Entities"."Accounts"
             WHERE "Host" = @name
+            Order by "Id"
             """,
             connection);
         cmd.Parameters.AddWithValue("name", name);
