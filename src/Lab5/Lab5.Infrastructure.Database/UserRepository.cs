@@ -6,10 +6,12 @@ namespace Lab5.Infrastructure;
 
 public class UserRepository : IUserRepository
 {
-    private readonly string _connectionString = "Host=localhost:5432;" +
-                                               "Username=postgres;" +
-                                               "Password=fedor2004;" +
-                                               "Database=Lab5";
+    private readonly string _connectionString;
+
+    public UserRepository(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
 
     public User? FindUserByName(string name)
     {

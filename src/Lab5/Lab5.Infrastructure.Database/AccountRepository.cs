@@ -6,10 +6,12 @@ namespace Lab5.Infrastructure;
 
 public class AccountRepository : IAccountRepository
 {
-    private readonly string _connectionString = "Host=localhost:5432;" +
-                                                "Username=postgres;" +
-                                                "Password=fedor2004;" +
-                                                "Database=Lab5";
+    private readonly string _connectionString;
+
+    public AccountRepository(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
 
     public Account? FindAccountById(int id)
     {
@@ -85,12 +87,11 @@ public class AccountRepository : IAccountRepository
         connection.Open();
         using var cmd = new NpgsqlCommand(
             """
-                    INSERT INTO "Entities"."Accounts" as ac ("Host", "Balance")
-                    VALUES (@host, @balance)
+                    INSERT INTO "Entities"."Accounts" ("Host", "Balance")
+                    VALUES (@host, 0)
             """,
             connection);
-        cmd.Parameters.AddWithValue("name", host);
-        cmd.Parameters.AddWithValue("name", host);
+        cmd.Parameters.AddWithValue("host", host);
         using NpgsqlDataReader reader = cmd.ExecuteReader();
     }
 }
