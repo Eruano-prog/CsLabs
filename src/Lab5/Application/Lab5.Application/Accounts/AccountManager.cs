@@ -26,6 +26,6 @@ public class AccountManager : IAccountManager
 
     private void SaveChanges()
     {
-        _accountRepository.SaveAccount(_account);
+        _accountRepository.EditAccountBalance(_account);
     }
 }

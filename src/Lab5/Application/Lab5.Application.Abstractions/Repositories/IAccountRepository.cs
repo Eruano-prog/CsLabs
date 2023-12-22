@@ -6,6 +6,6 @@ public interface IAccountRepository
 {
     Account? FindAccountById(int id);
     IEnumerable<Account> FindAccountsByName(string name);
-    void SaveAccount(Account account);
-    void CreateAccount();
+    void EditAccountBalance(Account account);
+    void CreateAccount(string host);
 }

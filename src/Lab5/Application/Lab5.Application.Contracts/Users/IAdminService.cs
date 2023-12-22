@@ -3,5 +3,5 @@
 public interface IAdminService
 {
     void FindUsersAccount(string username);
-    void 
+    void EditUsersAccountBalance(string username, int id, int balance);
 }
