@@ -32,14 +32,12 @@ public class UserService : IUserService
         return new LoginSuccess();
     }
 
-    public IEnumerable<int>? GetUsersAccounts()
+    public IEnumerable<Account>? GetUsersAccounts()
     {
         if (_user is null) return null;
         IEnumerable<Account> accounts = _accountRepository.FindAccountsByName(_user.Name);
 
-        IEnumerable<int> result = accounts.Select(a => a.Id);
-
-        return result;
+        return accounts;
     }
 
     public void ChooseAccount(int id)
@@ -55,14 +53,17 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public int GetBalance()
+    public long GetBalance()
     {
-        throw new NotImplementedException();
+        if (_accountManager is null) return -1;
+        return _accountManager.GetAccountBalance();
     }
 
-    public int GetMoney()
+    public int GetMoney(int sum)
     {
-        throw new NotImplementedException();
+        if (_accountManager is null) return -1;
+        _accountManager.ChangeBalance(-sum);
+        return 1;
     }
 
     public void PutMoney(int amount)
