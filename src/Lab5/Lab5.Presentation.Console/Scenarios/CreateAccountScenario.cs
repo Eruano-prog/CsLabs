@@ -1,0 +1,28 @@
+﻿using Lab5.Application.Contracts.Users;
+
+namespace Lab5.Presentation.Console.Scenarios;
+
+public class CreateAccountScenario : BaseScenarioChain
+{
+    public CreateAccountScenario(string name)
+        : base(name)
+    {
+    }
+
+    public override void Handle(string input, IUserService userService)
+    {
+        if (input == "create")
+        {
+            Run(userService);
+        }
+
+        base.Handle(input, userService);
+    }
+
+    public override void Run(IUserService userService)
+    {
+        if (userService is null) return;
+        userService.CreateAccount();
+        System.Console.WriteLine("Account Created!");
+    }
+}
