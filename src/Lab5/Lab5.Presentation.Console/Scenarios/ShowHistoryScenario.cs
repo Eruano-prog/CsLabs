@@ -14,14 +14,14 @@ public class ShowHistoryScenario : BaseScenarioChain
     {
         if (input == "history")
         {
-            Run(userService);
+            Run(userService, adminService);
             return;
         }
 
         base.Handle(input, userService, adminService);
     }
 
-    public override void Run(IUserService userService)
+    public override void Run(IUserService userService, IAdminService adminService)
     {
         if (userService is null) return;
 

@@ -20,7 +20,9 @@ scenarioChain.SetNext(new CheckBalanceScenario("balance")
         .SetNext(new ChooseAccountScenario("choose")
             .SetNext(new PutMoneyScenario("put")
                 .SetNext(new CreateAccountScenario("create")
-                    .SetNext(new ShowHistoryScenario("history")))))));
+                    .SetNext(new ShowHistoryScenario("history")
+                        .SetNext(new FindUsersAccount("findAccount")
+                            .SetNext(new ViewUserScenario("viewUser")))))))));
 
 IUserService userService = new UserService(userRepository, accountRepository, orderRepository);
 IAdminService adminService = new AdminService("123", userRepository, accountRepository, orderRepository);

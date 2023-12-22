@@ -13,13 +13,13 @@ public class CreateAccountScenario : BaseScenarioChain
     {
         if (input == "create")
         {
-            Run(userService);
+            Run(userService, adminService);
         }
 
         base.Handle(input, userService, adminService);
     }
 
-    public override void Run(IUserService userService)
+    public override void Run(IUserService userService, IAdminService adminService)
     {
         if (userService is null) return;
         userService.CreateAccount();

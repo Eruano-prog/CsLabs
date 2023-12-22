@@ -1,17 +1,18 @@
 ﻿using Lab5.Application.Contracts.Users;
+using Lab5.Application.Models.Transactions;
 
 namespace Lab5.Presentation.Console.Scenarios;
 
-public class LoginScenario : BaseScenarioChain
+public class ViewUserScenario : BaseScenarioChain
 {
-    public LoginScenario(string name)
+    public ViewUserScenario(string name)
         : base(name)
     {
     }
 
     public override void Handle(string input, IUserService userService, IAdminService adminService)
     {
-        if (input == "login")
+        if (input == "viewUser")
         {
             Run(userService, adminService);
             return;
@@ -22,18 +23,16 @@ public class LoginScenario : BaseScenarioChain
 
     public override void Run(IUserService userService, IAdminService adminService)
     {
-        System.Console.WriteLine("Type your username");
+        if (adminService is null) return;
+        System.Console.WriteLine("Enter user to view:");
         string? username = System.Console.ReadLine();
-        System.Console.WriteLine("Type your password");
-        string? password = System.Console.ReadLine();
-        if (username is null || password is null || userService is null || adminService is null) return;
+        if (username is null) return;
 
-        if (username == "Admin")
+        IEnumerable<Order> list = adminService.ViewUsersHistory(username) ?? Array.Empty<Order>();
+
+        foreach (Order order in list)
         {
-            adminService.Login(password);
-            return;
+            System.Console.WriteLine($"{order.AccountId} {order.Type} {order.Amount}");
         }
-
-        userService.Login(username, password);
     }
 }
