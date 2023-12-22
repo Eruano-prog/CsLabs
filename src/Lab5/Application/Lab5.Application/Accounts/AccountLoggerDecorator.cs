@@ -1,4 +1,5 @@
 ﻿using Lab5.Application.Abstractions.Repositories;
+using Lab5.Application.Contracts.Orders;
 using Lab5.Application.Models.Transactions;
 using Lab5.Application.Users.Models.Accounts;
 
@@ -22,10 +23,16 @@ public class AccountLoggerDecorator : IAccountManager
         return _accountManager.GetAccountBalance();
     }
 
-    public void ChangeBalance(long cash)
+    public OrderResults ChangeBalance(long cash)
     {
+        OrderResults result = _accountManager.ChangeBalance(cash);
+        if (result is OrderResults.NotEnoughMoney)
+        {
+            return result;
+        }
+
         OrderType orderType = cash >= 0 ? OrderType.Put : OrderType.Get;
         _orderRepository.AddOrder(new Order(_account.Id, cash, _account.Host, orderType));
-        _accountManager.ChangeBalance(cash);
+        return result;
     }
 }

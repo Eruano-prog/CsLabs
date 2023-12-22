@@ -1,4 +1,5 @@
 ﻿using Lab5.Application.Abstractions.Repositories;
+using Lab5.Application.Contracts.Orders;
 using Lab5.Application.Users.Models.Accounts;
 
 namespace Lab5.Application.Accounts;
@@ -18,10 +19,17 @@ public class AccountManager : IAccountManager
         return _account.Balance;
     }
 
-    public void ChangeBalance(long cash)
+    public OrderResults ChangeBalance(long cash)
     {
         _account.Balance += cash;
+        if (_account.Balance < 0)
+        {
+            _account.Balance -= cash;
+            return OrderResults.NotEnoughMoney;
+        }
+
         SaveChanges();
+        return OrderResults.Success;
     }
 
     private void SaveChanges()

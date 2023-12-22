@@ -1,5 +1,6 @@
 ﻿using Lab5.Application.Abstractions.Repositories;
 using Lab5.Application.Accounts;
+using Lab5.Application.Contracts.Orders;
 using Lab5.Application.Contracts.Users;
 using Lab5.Application.Models.Transactions;
 using Lab5.Application.Users.Abstractions.Repositories;
@@ -43,18 +44,20 @@ public class UserService : IUserService
         return accounts;
     }
 
-    public void ChooseAccount(int id)
+    public LoginResult ChooseAccount(int id)
     {
         Account? account = _accountRepository.FindAccountById(id);
-        if (account is null) return;
+        if (account is null) return new LoginNotFound();
 
         _accountManager = new AccountLoggerDecorator(account, _accountRepository, _orderRepository);
+        return new LoginSuccess();
     }
 
-    public void CreateAccount()
+    public OrderResults CreateAccount()
     {
-        if (_user is null) return;
+        if (_user is null) return OrderResults.AccountNotChosen;
         _accountRepository.CreateAccount(_user.Name);
+        return OrderResults.Success;
     }
 
     public long GetBalance()
@@ -63,16 +66,17 @@ public class UserService : IUserService
         return _accountManager.GetAccountBalance();
     }
 
-    public void GetMoney(int sum)
+    public OrderResults GetMoney(int sum)
     {
-        if (_accountManager is null) return;
-        _accountManager.ChangeBalance(-sum);
+        if (_accountManager is null) return OrderResults.AccountNotChosen;
+        return _accountManager.ChangeBalance(-sum);
     }
 
-    public void PutMoney(int amount)
+    public OrderResults PutMoney(int amount)
     {
-        if (_accountManager is null) return;
+        if (_accountManager is null) return OrderResults.AccountNotChosen;
         _accountManager.ChangeBalance(amount);
+        return OrderResults.Success;
     }
 
     public IEnumerable<Order>? ShowHistory()

@@ -22,9 +22,15 @@ public class AdminService : IAdminService
         _orderRepository = orderRepository;
     }
 
-    public void Login(string password)
+    public LoginResult Login(string password)
     {
-        if (password == _password) _logged = true;
+        if (password == _password)
+        {
+            _logged = true;
+            return new LoginSuccess();
+        }
+
+        return new LoginWrongPassword();
     }
 
     public IEnumerable<Account>? FindUsersAccount(string username)

@@ -27,6 +27,7 @@ public class ShowHistoryScenario : BaseScenarioChain
 
         IEnumerable<Order> list = userService.ShowHistory() ?? Array.Empty<Order>();
 
+        System.Console.WriteLine("History of accounts:");
         foreach (Order order in list)
         {
             System.Console.WriteLine($"{order.AccountId} {order.Type} {order.Amount}");

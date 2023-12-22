@@ -1,7 +1,9 @@
-﻿namespace Lab5.Application.Accounts;
+﻿using Lab5.Application.Contracts.Orders;
+
+namespace Lab5.Application.Accounts;
 
 public interface IAccountManager
 {
     long GetAccountBalance();
-    void ChangeBalance(long cash);
+    OrderResults ChangeBalance(long cash);
 }

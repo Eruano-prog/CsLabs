@@ -30,6 +30,7 @@ public class FindUsersAccount : BaseScenarioChain
 
         IEnumerable<Account> accounts = adminService.FindUsersAccount(username) ?? new List<Account>();
 
+        System.Console.WriteLine("Found accounts of user:");
         foreach (Account account in accounts)
         {
             System.Console.WriteLine($"{account.Id}\t{account.Balance}");

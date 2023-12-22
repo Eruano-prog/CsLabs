@@ -1,4 +1,5 @@
-﻿using Lab5.Application.Contracts.Users;
+﻿using Lab5.Application.Contracts.Orders;
+using Lab5.Application.Contracts.Users;
 
 namespace Lab5.Presentation.Console.Scenarios;
 
@@ -29,7 +30,9 @@ public class PutMoneyScenario : BaseScenarioChain
 
         if (int.TryParse(answer, out int sum))
         {
-            userService.PutMoney(sum);
+            OrderResults results = userService.PutMoney(sum);
+            if (results is OrderResults.Success) System.Console.WriteLine("You put your money to account");
+            else if (results is OrderResults.AccountNotChosen) System.Console.WriteLine("Choose account first");
         }
         else
         {

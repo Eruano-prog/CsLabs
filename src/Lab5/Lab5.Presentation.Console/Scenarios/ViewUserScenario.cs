@@ -30,6 +30,7 @@ public class ViewUserScenario : BaseScenarioChain
 
         IEnumerable<Order> list = adminService.ViewUsersHistory(username) ?? Array.Empty<Order>();
 
+        System.Console.WriteLine("Found users history:");
         foreach (Order order in list)
         {
             System.Console.WriteLine($"{order.AccountId} {order.Type} {order.Amount}");

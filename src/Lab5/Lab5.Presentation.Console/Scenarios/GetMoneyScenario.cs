@@ -1,4 +1,5 @@
-﻿using Lab5.Application.Contracts.Users;
+﻿using Lab5.Application.Contracts.Orders;
+using Lab5.Application.Contracts.Users;
 
 namespace Lab5.Presentation.Console.Scenarios;
 
@@ -29,7 +30,10 @@ public class GetMoneyScenario : BaseScenarioChain
 
         if (int.TryParse(answer, out int sum))
         {
-            userService.GetMoney(sum);
+            OrderResults result = userService.GetMoney(sum);
+            if (result is OrderResults.Success) System.Console.WriteLine("You got your money");
+            else if (result is OrderResults.AccountNotChosen) System.Console.WriteLine("Please choose account first");
+            else if (result is OrderResults.NotEnoughMoney) System.Console.WriteLine("Not enough money on chosen account");
         }
         else
         {

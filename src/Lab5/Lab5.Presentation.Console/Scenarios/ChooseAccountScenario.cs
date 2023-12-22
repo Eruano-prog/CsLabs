@@ -29,7 +29,10 @@ public class ChooseAccountScenario : BaseScenarioChain
 
         if (int.TryParse(idStr, out int id))
         {
-            userService.ChooseAccount(id);
+            LoginResult result = userService.ChooseAccount(id);
+
+            if (result is LoginSuccess) System.Console.WriteLine("You`ve chosen it");
+            else if (result is LoginNotFound) System.Console.WriteLine("Account with this id not found");
         }
         else
         {

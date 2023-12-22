@@ -1,4 +1,5 @@
-﻿using Lab5.Application.Contracts.Users;
+﻿using Lab5.Application.Contracts.Orders;
+using Lab5.Application.Contracts.Users;
 
 namespace Lab5.Presentation.Console.Scenarios;
 
@@ -22,7 +23,8 @@ public class CreateAccountScenario : BaseScenarioChain
     public override void Run(IUserService userService, IAdminService adminService)
     {
         if (userService is null) return;
-        userService.CreateAccount();
-        System.Console.WriteLine("Account Created!");
+        OrderResults result = userService.CreateAccount();
+        if (result is OrderResults.Success) System.Console.WriteLine("Account Created!");
+        else if (result is OrderResults.AccountNotChosen) System.Console.WriteLine("Login first");
     }
 }

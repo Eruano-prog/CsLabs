@@ -23,9 +23,9 @@ public class CheckBalanceScenario : BaseScenarioChain
     public override void Run(IUserService userService, IAdminService adminService)
     {
         if (userService is null) return;
-        IEnumerable<Account>? accounts = userService.GetUsersAccounts();
+        IEnumerable<Account> accounts = userService.GetUsersAccounts() ?? new List<Account>();
 
-        if (accounts is null) return;
+        System.Console.WriteLine("Found accounts:");
         foreach (Account account in accounts)
         {
             System.Console.WriteLine($"{account.Id}\t{account.Balance}");
