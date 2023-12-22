@@ -10,7 +10,7 @@ public class ShowHistoryScenario : BaseScenarioChain
     {
     }
 
-    public override void Handle(string input, IUserService userService)
+    public override void Handle(string input, IUserService userService, IAdminService adminService)
     {
         if (input == "history")
         {
@@ -18,7 +18,7 @@ public class ShowHistoryScenario : BaseScenarioChain
             return;
         }
 
-        base.Handle(input, userService);
+        base.Handle(input, userService, adminService);
     }
 
     public override void Run(IUserService userService)

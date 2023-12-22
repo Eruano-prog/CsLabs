@@ -9,7 +9,7 @@ public class ChooseAccountScenario : BaseScenarioChain
     {
     }
 
-    public override void Handle(string input, IUserService userService)
+    public override void Handle(string input, IUserService userService, IAdminService adminService)
     {
         if (input == "choose")
         {
@@ -17,7 +17,7 @@ public class ChooseAccountScenario : BaseScenarioChain
             return;
         }
 
-        base.Handle(input, userService);
+        base.Handle(input, userService, adminService);
     }
 
     public override void Run(IUserService userService)

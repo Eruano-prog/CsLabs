@@ -6,11 +6,13 @@ public class ScenarioRunner
 {
     private readonly IScenario _scenarioChain;
     private readonly IUserService _userService;
+    private readonly IAdminService _adminService;
 
-    public ScenarioRunner(IScenario scenarioChain, IUserService userService)
+    public ScenarioRunner(IScenario scenarioChain, IUserService userService, IAdminService adminService)
     {
         _scenarioChain = scenarioChain;
         _userService = userService;
+        _adminService = adminService;
     }
 
     public void Run()
@@ -23,7 +25,7 @@ public class ScenarioRunner
             input = System.Console.ReadLine();
             if (input is null) return;
 
-            _scenarioChain.Handle(input, _userService);
+            _scenarioChain.Handle(input, _userService, _adminService);
         }
     }
 }

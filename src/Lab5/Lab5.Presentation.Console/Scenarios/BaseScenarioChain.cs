@@ -12,9 +12,9 @@ public abstract class BaseScenarioChain : IScenario
     public string Name { get; }
     public IScenario? NextScenario { get; private set; }
     public abstract void Run(IUserService userService);
-    public virtual void Handle(string input, IUserService userService)
+    public virtual void Handle(string input, IUserService userService, IAdminService adminService)
     {
-        NextScenario?.Handle(input, userService);
+        NextScenario?.Handle(input, userService, adminService);
     }
 
     public IScenario SetNext(IScenario scenarioNode)

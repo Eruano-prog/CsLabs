@@ -23,7 +23,8 @@ scenarioChain.SetNext(new CheckBalanceScenario("balance")
                     .SetNext(new ShowHistoryScenario("history")))))));
 
 IUserService userService = new UserService(userRepository, accountRepository, orderRepository);
+IAdminService adminService = new AdminService("123", userRepository, accountRepository, orderRepository);
 
-var scenario = new ScenarioRunner(scenarioChain, userService);
+var scenario = new ScenarioRunner(scenarioChain, userService, adminService);
 
 scenario.Run();

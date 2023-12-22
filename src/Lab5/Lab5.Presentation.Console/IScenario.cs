@@ -8,6 +8,6 @@ public interface IScenario
     IScenario? NextScenario { get; }
 
     void Run(IUserService userService);
-    void Handle(string input, IUserService userService);
+    void Handle(string input, IUserService userService, IAdminService adminService);
     IScenario SetNext(IScenario scenarioNode);
 }
