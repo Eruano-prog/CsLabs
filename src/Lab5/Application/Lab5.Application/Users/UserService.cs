@@ -1,6 +1,7 @@
 ﻿using Lab5.Application.Abstractions.Repositories;
 using Lab5.Application.Accounts;
 using Lab5.Application.Contracts.Users;
+using Lab5.Application.Models.Transactions;
 using Lab5.Application.Users.Abstractions.Repositories;
 using Lab5.Application.Users.Models.Accounts;
 using Lab5.Application.Users.Models.Users;
@@ -11,13 +12,15 @@ public class UserService : IUserService
 {
     private readonly IAccountRepository _accountRepository;
     private readonly IUserRepository _userRepository;
+    private readonly IOrderRepository _orderRepository;
     private User? _user;
-    private AccountManager? _accountManager;
+    private IAccountManager? _accountManager;
 
-    public UserService(IUserRepository userRepository, IAccountRepository accountRepository)
+    public UserService(IUserRepository userRepository, IAccountRepository accountRepository, IOrderRepository orderRepository)
     {
         _userRepository = userRepository;
         _accountRepository = accountRepository;
+        _orderRepository = orderRepository;
     }
 
     public LoginResult Login(string name, string password)
@@ -45,12 +48,13 @@ public class UserService : IUserService
         Account? account = _accountRepository.FindAccountById(id);
         if (account is null) return;
 
-        _accountManager = new AccountManager(account, _accountRepository);
+        _accountManager = new AccountLoggerDecorator(account, _accountRepository, _orderRepository);
     }
 
     public void CreateAccount()
     {
-        throw new NotImplementedException();
+        if (_user is null) return;
+        _accountRepository.CreateAccount(_user.Name);
     }
 
     public long GetBalance()
@@ -59,20 +63,21 @@ public class UserService : IUserService
         return _accountManager.GetAccountBalance();
     }
 
-    public int GetMoney(int sum)
+    public void GetMoney(int sum)
     {
-        if (_accountManager is null) return -1;
+        if (_accountManager is null) return;
         _accountManager.ChangeBalance(-sum);
-        return 1;
     }
 
     public void PutMoney(int amount)
     {
-        throw new NotImplementedException();
+        if (_accountManager is null) return;
+        _accountManager.ChangeBalance(amount);
     }
 
-    public void ShowHistory()
+    public IEnumerable<Order>? ShowHistory()
     {
-        throw new NotImplementedException();
+        if (_user is null) return null;
+        return _orderRepository.GetHistoryByUser(_user.Name);
     }
 }
