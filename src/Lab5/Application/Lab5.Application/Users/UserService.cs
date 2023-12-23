@@ -14,14 +14,22 @@ public class UserService : IUserService
     private readonly IAccountRepository _accountRepository;
     private readonly IUserRepository _userRepository;
     private readonly IOrderRepository _orderRepository;
-    private User? _user;
     private IAccountManager? _accountManager;
+    private User? _user;
 
     public UserService(IUserRepository userRepository, IAccountRepository accountRepository, IOrderRepository orderRepository)
     {
         _userRepository = userRepository;
         _accountRepository = accountRepository;
         _orderRepository = orderRepository;
+    }
+
+    public UserService(IUserRepository userRepository, IAccountRepository accountRepository, IOrderRepository orderRepository, IAccountManager accountManager)
+    {
+        _userRepository = userRepository;
+        _accountRepository = accountRepository;
+        _orderRepository = orderRepository;
+        _accountManager = accountManager;
     }
 
     public LoginResult Login(string name, string password)
