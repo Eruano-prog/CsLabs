@@ -22,7 +22,10 @@ collection.AddScoped<IOrderRepository>(sp => new OrderRepository(connectionStrin
 
 collection.AddScoped<ScenarioRunner>();
 
-var provider = collection.Get();
-using var scope = provider.CreateScope();
+ServiceProvider provider = collection.BuildServiceProvider();
 
-scenario.Run();
+using IServiceScope scope = provider.CreateScope();
+
+ScenarioRunner scenarioRunner = scope.ServiceProvider.GetRequiredService<ScenarioRunner>();
+
+scenarioRunner.Run();
