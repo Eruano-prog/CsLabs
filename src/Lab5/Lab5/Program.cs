@@ -4,29 +4,28 @@ using Lab5.Application.Users;
 using Lab5.Application.Users.Abstractions.Repositories;
 using Lab5.Infrastructure;
 using Lab5.Presentation.Console;
-using Lab5.Presentation.Console.Scenarios;
+using Microsoft.Extensions.DependencyInjection;
+
+var collection = new ServiceCollection();
+
+collection.AddScoped<IUserService, UserService>();
+collection.AddScoped<IAdminService, AdminService>();
 
 string connectionString = "Host=localhost:5432;" +
                           "Username=postgres;" +
                           "Password=fedor2004;" +
                           "Database=Lab5";
-IUserRepository userRepository = new UserRepository(connectionString);
-IAccountRepository accountRepository = new AccountRepository(connectionString);
-IOrderRepository orderRepository = new OrderRepository(connectionString);
 
-IScenario scenarioChain = new LoginScenario("login");
-scenarioChain.SetNext(new CheckBalanceScenario("balance")
-    .SetNext(new GetMoneyScenario("get")
-        .SetNext(new ChooseAccountScenario("choose")
-            .SetNext(new PutMoneyScenario("put")
-                .SetNext(new CreateAccountScenario("create")
-                    .SetNext(new ShowHistoryScenario("history")
-                        .SetNext(new FindUsersAccount("findAccount")
-                            .SetNext(new ViewUserScenario("viewUser")))))))));
+collection.AddScoped<IUserRepository>(sp => new UserRepository(connectionString));
+collection.AddScoped<IAccountRepository>(sp => new AccountRepository(connectionString));
+collection.AddScoped<IOrderRepository>(sp => new OrderRepository(connectionString));
 
-IUserService userService = new UserService(userRepository, accountRepository, orderRepository);
-IAdminService adminService = new AdminService("123", userRepository, accountRepository, orderRepository);
+collection.AddScoped<ScenarioRunner>();
 
-var scenario = new ScenarioRunner(scenarioChain, userService, adminService);
+ServiceProvider provider = collection.BuildServiceProvider();
 
-scenario.Run();
+using IServiceScope scope = provider.CreateScope();
+
+ScenarioRunner scenarioRunner = scope.ServiceProvider.GetRequiredService<ScenarioRunner>();
+
+scenarioRunner.Run();

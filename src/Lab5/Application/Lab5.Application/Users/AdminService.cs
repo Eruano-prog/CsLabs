@@ -11,12 +11,11 @@ public class AdminService : IAdminService
     private IUserRepository _userRepository;
     private IAccountRepository _accountRepository;
     private IOrderRepository _orderRepository;
-    private string _password;
+    private string _password = "123";
     private bool _logged;
 
-    public AdminService(string password, IUserRepository userRepository, IAccountRepository accountRepository, IOrderRepository orderRepository)
+    public AdminService(IUserRepository userRepository, IAccountRepository accountRepository, IOrderRepository orderRepository)
     {
-        _password = password;
         _userRepository = userRepository;
         _accountRepository = accountRepository;
         _orderRepository = orderRepository;
